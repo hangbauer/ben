@@ -1,0 +1,23 @@
+1. pada saat input tanggal bisa pakai keyboard
+2. apabila mau hapus data, butuh konfirmasi
+3. ada bug, waktu input tanda terima(detail), kalau sudah di hapus, sudah tidak bisa tambah detail lagi
+4. di laporan tanda terima butuh kolom nama pengirim
+5. butuh kolom cari voyage di laporan tanda terima
+6. laporan tanda terima mungkin bisa lebih dari 1 ---------
+7. tampilan laporan tanda terima mau ada voyage
+8. kalau tekan tab, tandanya tidak kelihatan
+9. waktu input data master ada kolom (PT,CV,Pribadi)
+10. waktu tambah detail item angka dijumlah 0, jangan 1
+11. laporan loading list butuh kolom voyage
+12. bugs, di loading list masih ada kurang, kalau input term belum tampil lengkap -----------
+13. tampilan loading list blom ada voyage
+14. tampilan loading list penerima cukup 1
+15. input double tanda terima ada peringatan --------------
+16. saat masuk pindah kapal, nama kontainer kalau bisa urut
+17. tampilan pada saat pindah kapal, disebelah nama container kalo bisa nomor seal + lagi tanggal terima barang
+18. input transaksi tanda terima nama penerima & pengirim ada alamat
+19. nama penerima belum urut
+20. input jadwal kapal berangkat butuh kolom kota keberangkatan
+21. laporan tanda terima + kolom nama pengirim, tujuan kapal
+22. laporan loading list harus ada tujuan (kalo ga ada jadi kegabung)
+23. data belum bisa di hapus

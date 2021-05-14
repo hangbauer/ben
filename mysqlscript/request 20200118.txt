@@ -1,0 +1,5 @@
+1. menu invoice bagian detail, tambah tampilan jenis container di sebelah nama kontainer 
+   20,30, atau kombo (DONE)
+2. menu invoice tambah inputan asuransi di bawah PPN (DONE)
+3. printout invoice, tambah asuransi di bawah PPN (DONE)
+4. printout invoice, di kolom jenis barang tambah nomor container dan jenis container (DONE)
