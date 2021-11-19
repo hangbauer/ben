@@ -312,3 +312,64 @@ DELIMITER ;
 
 ALTER TABLE `invoicemas` 
 ADD COLUMN `departdate` date DEFAULT NULL AFTER `duedate`;
+
+
+
+
+#######################################################################################
+DROP PROCEDURE IF EXISTS `sprRptDeliveryOrderReport`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sprRptDeliveryOrderReport`(IN departDate VARCHAR(10), IN intShipId INT, IN intRecipientId INT, IN strStatus VARCHAR(1), IN strVoyage VARCHAR(100), IN intSenderId INT, IN strReceiptNo VARCHAR(100))
+BEGIN
+	SELECT
+		mas.receiptno, mas.dodate, mas.containername, mas.seal, mas.note, mas.recipientid,
+        ship.name AS shipname, shipsc.departdate, shipsc.id AS shipscid, shipsc.voyage, shipsc.destination,
+        rec.name AS recname, rec.address AS recaddress, inv.invoiceno, mas.senderid, send.name AS sendname                 
+	FROM domas mas 
+    INNER JOIN shipschedule shipsc ON shipsc.id = mas.shipscheduleid 
+    INNER JOIN ship ON ship.id = shipsc.id
+    INNER JOIN recipient rec ON rec.id = mas.recipientid 
+    INNER JOIN sender send ON send.id = mas.senderid 
+    LEFT JOIN
+    (
+		SELECT mas.id, mas.invoiceno, dtl.domasid
+        FROM invoicemas mas
+        INNER JOIN invoicedtl dtl ON mas.id = dtl.invoicemasid
+    ) inv ON mas.id = inv.domasid
+    WHERE 
+		('' = departDate OR shipsc.departdate = departDate) 
+        AND (0 = intShipId OR shipsc.shipid = intShipId) 
+        AND (0 = intRecipientId OR mas.recipientid = intRecipientId) 
+        AND ('0' = strStatus OR ('1' = strStatus AND IFNULL(inv.invoiceno,'') = '') OR ('2' = strStatus AND IFNULL(inv.invoiceno,'') <> ''))
+        AND ('' = strVoyage OR shipsc.voyage = strVoyage) 
+        AND (0 = intSenderId OR mas.senderid = intSenderId) 
+        AND ('' = strReceiptNo OR mas.receiptno = strReceiptNo) 
+	ORDER BY ship.name, shipsc.departdate, rec.name, mas.receiptno, send.name
+    ;
+END$$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sprRptItem`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sprRptItem`(IN departDate VARCHAR(10), IN intShipId INT, IN intIsShip INT)
+BEGIN
+	SELECT 
+		ship.name AS shipname, shipsc.departdate, shipsc.destination, shipsc.note AS shipscnote, shipsc.voyage, 
+		shipsc.depart,
+        mas.containername, mas.seal, mas.receiptno,
+        rec.name recname,
+        dtl.itemname, dtl.itemorder, dtl.itemunit, dtl.volume, dtl.note AS dtlnote
+    FROM domas mas
+    INNER JOIN dodtl dtl ON dtl.domasid = mas.id 
+    INNER JOIN recipient rec ON rec.id = mas.recipientid 
+    LEFT OUTER JOIN shipschedule shipsc ON mas.shipscheduleid = shipsc.id 
+    LEFT OUTER JOIN ship ON shipsc.shipid = ship.id     
+    WHERE 
+		('ALL' = departDate OR shipsc.departdate = departDate) 
+        AND (0 = intShipId OR shipsc.shipid = intShipId) 
+        AND ((0 = intIsShip AND shipsc.id IS NULL) OR (1 = intIsShip AND shipsc.id IS NOT NULL )) 
+	ORDER BY ship.name, departdate, mas.containername
+    ;
+END$$
+DELIMITER ;
+

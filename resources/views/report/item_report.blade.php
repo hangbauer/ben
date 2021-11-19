@@ -16,7 +16,7 @@
 			<div class="box box-success box-search">
 				{{-- collapsed-box --}}
 			    <div class="box-header with-border">
-					<h3 class="box-title">Laporan Tanda Terima</h3>
+					<h3 class="box-title">Laporan Perincian Barang</h3>
 					<div class="box-tools pull-right">
 						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 						</button>
@@ -24,25 +24,19 @@
 			    </div>
 			    <!-- /.box-header -->
 			    <!-- form start -->
-			    <form role="form" method="POST" id="form-add" action="{{ url('report/deliveryorder_report-excel') }}">
+			    <form role="form" method="POST" id="form-add" action="{{ url('report/item_report-jasper') }}">
 					{!! csrf_field() !!}
 
 					<div class="box-body">
 						<div class="row">
 							<div class="col-md-4">
-					            <div class="form-group">
-									<label for="shipid">Nomor Tanda Terima</label>									
-									<input class="form-control" name="receiptno">
-					            </div>
-					        </div>
-							<div class="col-md-4">
 								<div class="form-group">
-									<label for="code">Tanggal Berangkat</label>
+									<label for="datefr">Tanggal Berangkat</label>
 									<div class="input-group date">
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
-										<input type="text" class="form-control pull-right datepicker" name="datefr" autocomplete="off">
+										<input type="text" class="form-control pull-right datepicker" name="departdate" autocomplete="off">
 									</div>
 								<!-- /.input group -->
 								</div>
@@ -57,61 +51,20 @@
 											<option value="{{ $ship->id }}" >{{ $ship->name }}</option>
 										@endforeach
 									</select>
-					            </div>
-                            </div>                            
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-					            <div class="form-group">
-									<label for="shipid">Nama Pengirim</label>
-									<select class="form-control select2" style="width: 100%;" name="senderid">
-										<option value=""></option>
-										@foreach($dropDownSender as $sender)
-											<option value="{{ $sender->id }}" >{{ $sender->name }}</option>
-										@endforeach
-									</select>
-					            </div>
-					        </div>
-							<div class="col-md-4">
-					            <div class="form-group">
-									<label for="shipid">Nama Penerima</label>
-									<select class="form-control select2" style="width: 100%;" name="recipientid">
-										<option value=""></option>
-										@foreach($dropDownRecipient as $recipient)
-											<option value="{{ $recipient->id }}" >{{ $recipient->name }}</option>
-										@endforeach
-									</select>
-					            </div>
-					        </div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Status</label>
-									<select class="form-control select2" style="width: 100%;" name="status">
-									<option value="0">Semua</option>
-									<option value="1">Belum Invoice</option>
-									<option value="2">Sudah Invoice</option>
-									</select>
-								</div>
+					            </div>					          
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-4">
-								<div class="form-group">
-									<label>Voyage</label>
-									<input class="form-control" name="voyage">
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Tipe Laporan</label>
-									<select class="form-control select2" style="width: 100%;" name="reporttypeid">
-									<option value="1">Html</option>
-									<option value="2">Excel</option>
-									<option value="3">Pdf</option>
+					            <div class="form-group">
+									<label for="senderid">Masuk Ke Kapal</label>
+									<select class="form-control select2" style="width: 100%;" name="isship">
+										<option value="1">Sudah</option>
+										<option value="0">Belum</option>
 									</select>
-								</div>
-                            </div>                            
-						</div>
+					            </div>
+					        </div>							
+						</div>						
 					</div>
 					<!-- /.box-body -->
 
@@ -150,7 +103,7 @@
 				autoclose: true
 			});
 
-			$('input[name=receiptno]').focus();
+			$('input[name=departdate]').focus();
 		}
 
 

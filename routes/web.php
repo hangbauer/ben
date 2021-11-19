@@ -41,10 +41,15 @@ Route::post('report/loadinglist-excel', 'ReportController@loadingListExcel');
 Route::get('report/deliveryorder', 'ReportController@deliveryOrder');
 Route::post('report/deliveryorder-excel', 'ReportController@deliveryOrderExcel');
 Route::get('report/invoice-excel', 'ReportController@invoiceExcel');
+Route::get('report/invoice-jasper', 'ReportController@invoiceJasper');
 Route::get('report/deliveryorder_report', 'ReportController@deliveryOrderReport');
 Route::post('report/deliveryorder_report-excel', 'ReportController@deliveryOrderReportExcel');
 Route::get('report/invoice_report', 'ReportController@invoiceReport');
 Route::post('report/invoice_report-excel', 'ReportController@invoiceReportExcel');
+Route::get('report/item_report', 'ReportController@itemReport');
+Route::post('report/item_report-jasper', 'ReportController@itemReportJasper');
+Route::get('report/container_report', 'ReportController@containerReport');
+Route::post('report/container_report-excel', 'ReportController@containerReportExcel');
 
 Auth::routes();
 

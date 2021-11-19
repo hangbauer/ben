@@ -304,7 +304,8 @@ class DeliveryOrder {
                     AND (mas.senderid = :senderid1 OR :senderid2 = 0)
                     AND (mas.recipientid = :recipientid1 OR :recipientid2 = 0)
                     AND (mas.note LIKE CONCAT(:note1,'%') OR :note2 = '')
-                    AND (mas.containername LIKE CONCAT(:containername1,'%') OR :containername2 = '')                    
+                    AND (mas.containername LIKE CONCAT(:containername1,'%') OR :containername2 = '')
+                ORDER BY mas.dodate DESC             
                 "
                 ;
         }else{
@@ -319,6 +320,7 @@ class DeliveryOrder {
                     AND (mas.note LIKE CONCAT(:note1,'%') OR :note2 = '')
                     AND (mas.containername LIKE CONCAT(:containername1,'%') OR :containername2 = '')
                     AND mas.shipscheduleid IS NULL
+                ORDER BY mas.dodate DESC
                 "
                 ;
         }        

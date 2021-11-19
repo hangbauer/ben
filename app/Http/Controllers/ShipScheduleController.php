@@ -9,6 +9,7 @@ use Auth;
 
 use App\ShipSchedule;
 use App\Ship;
+use App\Invoice;
 
 class ShipScheduleController extends Controller
 {
@@ -106,10 +107,13 @@ class ShipScheduleController extends Controller
 
         $doMas = ShipSchedule::getDoMasByShipScheduleID($id);
 
+        $invoiceDtl = Invoice::getInvoiceDtlByByShipScheduleId($id);        
+
         return view('shipschedule.create')
             ->with('shipSchedule', $shipSchedule)
             ->with('dropDownShip', $dropDownShip)
             ->with('doMas', $doMas)
+            ->with('invoiceDtl', $invoiceDtl)
             ;
     }
 

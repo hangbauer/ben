@@ -19,7 +19,7 @@
 				<td>{{ $table->note }}</td>						
 				<td>
 					<a href="{{ url('invoice/'.$table->id.'/edit') }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Ubah</a>
-					<a href="{{ url('report/invoice-excel?reporttypeid=1&invoicemasid='.$table->id) }}" class="btn btn-xs btn-default"><i class="fa fa-print"></i> Print</a>
+					<a target="_blank" href="{{ url('report/invoice-jasper?reporttypeid=1&invoicemasid='.$table->id) }}" class="btn btn-xs btn-default"><i class="fa fa-print"></i> Print</a>
 				</td>
 			</tr>
 		@endforeach

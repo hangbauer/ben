@@ -116,10 +116,16 @@
       </div>
       <!-- /.box-body -->
 
-      <div class="box-footer">
-        <button type="submit" class="btn btn-primary">{{ isset($shipSchedule) ? 'Ubah' : 'Tambah'}}</button>
+      <div class="box-footer">        
         @if(isset($shipSchedule))
-          <button type="button" class="btn btn-danger" id="btnDel">Hapus</button>
+          @if(isset($invoiceDtl))
+            @if(count($invoiceDtl) == 0)
+              <button type="submit" class="btn btn-primary">Ubah</button>
+              <button type="button" class="btn btn-danger" id="btnDel">Hapus</button>
+            @endif            
+          @endif          
+        @else
+          <button type="submit" class="btn btn-primary">Tambah</button>
         @endif
       </div>
     </form>
@@ -232,6 +238,8 @@
         });
 
         $('.autonumeric').autoNumeric({mDec:0});
+
+        $('select[name=shipid]').focus();
       }
     });
 

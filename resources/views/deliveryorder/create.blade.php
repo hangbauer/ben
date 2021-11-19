@@ -224,9 +224,14 @@
       <!-- /.box-body -->
 
       <div class="box-footer">
-        <button type="submit" class="btn btn-primary">{{ isset($do['doMas']) ? 'Ubah' : 'Tambah'}}</button>
+        
         @if(isset($do['doMas']))
-          <button type="button" class="btn btn-danger" id="btnDel">Hapus</button>
+          @if(!isset($do['doMas'][0]->shipscheduleid))
+            <button type="submit" class="btn btn-primary">Ubah</button>
+            <button type="button" class="btn btn-danger" id="btnDel">Hapus</button>
+          @endif                    
+        @else
+          <button type="submit" class="btn btn-primary">Tambah</button>
         @endif
       </div>
     </form>
@@ -310,6 +315,8 @@
         });
 
         $('.autonumeric').autoNumeric({mDec:0});
+
+        $('input[name=receiptno]').focus();
       }
     });
   </script>

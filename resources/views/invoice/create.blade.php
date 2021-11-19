@@ -381,6 +381,8 @@
         setLock();
 
         getInvoiceNo();
+
+        $('input[name=invoiceno]').focus();
       }
 
     function searchList(){

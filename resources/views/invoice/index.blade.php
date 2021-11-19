@@ -46,7 +46,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
-										<input type="text" class="form-control pull-right" id="datepicker" name="invoicedate">
+										<input type="text" class="form-control pull-right datepicker" id="datepicker" name="invoicedate">
 									</div>
 								<!-- /.input group -->
 								</div>
@@ -83,7 +83,38 @@
 								</div>
 							</div>
 						</div>
-
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Nama Kapal</label>
+									<select class="form-control select2" style="width: 100%;" name="shipid">
+									<option value=""></option>
+									@foreach($dropDownShip as $ship)
+										<option value="{{ $ship->id }}">{{ $ship->name }}</option>
+									@endforeach
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="dodate">Tanggal Berangkat</label>
+									<div class="input-group date">
+										<div class="input-group-addon">
+											<i class="fa fa-calendar"></i>
+										</div>
+										<input type="text" class="form-control pull-right datepicker" id="departdate" name="departdate">
+									</div>
+								<!-- /.input group -->
+								</div>
+								<!-- /.form group -->
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="destination">Tujuan</label>
+									<input type="text" class="form-control" name="destination">
+								</div>
+							</div>
+						</div>
 					</div>
 					<!-- /.box-body -->
 
@@ -134,7 +165,12 @@
 		function init(){
 			$('.select2').select2();
 
-			$('#datepicker').datepicker({
+			// $('#datepicker').datepicker({
+			// 	format: "dd-M-yyyy",
+			// 	autoclose: true
+			// });
+
+			$('.datepicker').datepicker({
 				format: "dd-M-yyyy",
 				autoclose: true
 			});

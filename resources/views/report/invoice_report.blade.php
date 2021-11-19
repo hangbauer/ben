@@ -139,6 +139,8 @@
 				format: "dd-M-yyyy",
 				autoclose: true
 			});
+
+			$('input[name=datefr]').focus();
 		}
 
 

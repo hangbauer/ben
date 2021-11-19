@@ -31,6 +31,9 @@ class ReportController extends Controller
 
             return $next($request);
         });
+
+        $this->jasperUrl = 'http://localhost:8082/jasperserver/rest_v2/reports/Report_BEN/';
+        $this->jasperUserPass = 'jasperadmin:jasperadmin';
     }
 
     public function loadingList()
@@ -202,6 +205,40 @@ class ReportController extends Controller
         }
     }
 
+    public function invoiceJasper(Request $request)
+    {
+        $url = 'http://localhost:8082/jasperserver/rest_v2/reports/Report_BEN/Invoice.pdf?INVOICEMAS_ID=4';
+        // $headers = array('Content-Type: application/json', 'Accept: application/pdf', 'Connection: Keep-Alive');
+        $curl = curl_init();
+
+        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        // curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_USERPWD, "jasperadmin:jasperadmin");
+
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_HEADER, 1);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_BINARYTRANSFER, 1);
+
+        $file = curl_exec($curl);
+
+        curl_close($curl);
+
+        $file_array = explode("\n\r", $file, 2);
+        $header_array = explode("\n", $file_array[0]);
+        foreach($header_array as $header_value) {
+            $header_pieces = explode(':', $header_value);
+            if(count($header_pieces) == 2) {
+                $headers[$header_pieces[0]] = trim($header_pieces[1]);
+            }
+        }
+        header('Content-type: ' . $headers['Content-Type']);
+        header('Content-Disposition: ' . $headers['Content-Disposition']);
+        // echo substr($file_array[1], 1);
+
+        return substr($file_array[1], 1);
+    }
+
     public function deliveryOrderReport()
     {
         View::share ( 'subMenuName', 'Laporan Tanda Terima' );
@@ -311,5 +348,108 @@ class ReportController extends Controller
                 # code...
                 break;
         }
+    }
+
+    public function itemReport()
+    {
+        View::share ( 'subMenuName', 'Laporan Perincian Barang' );
+
+        $dropDownShip = Ship::getDropDownShip();
+
+        return view('report.item_report')
+            ->with('dropDownShip', $dropDownShip)            
+            ;
+    }
+
+    public function itemReportJasper(Request $request)
+    {
+        $departDate = $request->departdate == NULL ? 'ALL' : Date('Y-m-d', strtotime($request->departdate));
+        $shipId = $request->shipid == NULL ? 0 : $request->shipid;
+        $isShip = $request->isship == NULL ? 0 : $request->isship;
+
+        $url = $this->jasperUrl . 'ItemReport.pdf?DEPART_DATE='.$departDate.'&SHIP_ID='.$shipId.'&IS_SHIP='.$isShip;
+        
+        // $headers = array('Content-Type: application/json', 'Accept: application/pdf', 'Connection: Keep-Alive');
+        $curl = curl_init();
+
+        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        // curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_USERPWD, $this->jasperUserPass);
+
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_HEADER, 1);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_BINARYTRANSFER, 1);
+
+        $file = curl_exec($curl);
+
+        curl_close($curl);
+
+        $file_array = explode("\n\r", $file, 2);
+        $header_array = explode("\n", $file_array[0]);
+        foreach($header_array as $header_value) {
+            $header_pieces = explode(':', $header_value);
+            if(count($header_pieces) == 2) {
+                $headers[$header_pieces[0]] = trim($header_pieces[1]);
+            }
+        }
+        header('Content-type: ' . $headers['Content-Type']);
+        header('Content-Disposition: ' . $headers['Content-Disposition']);
+        // echo substr($file_array[1], 1);
+
+        return substr($file_array[1], 1);
+    }
+
+    public function containerReport()
+    {
+        View::share ( 'subMenuName', 'Laporan Perincian Kontainer' );
+
+        $dropDownShip = Ship::getDropDownShip();
+
+        return view('report.container_report')
+            ->with('dropDownShip', $dropDownShip)            
+            ;
+    }
+
+    public function ContainerReportExcel(Request $request)
+    {
+    	$data = Report::getLoadingListData($request, $this->userid, $this->branchid);
+
+    	switch ($request->reporttypeid) {
+    		case '1': //html
+    			return view('report.container_report-excel')
+    				->with('data', $data)
+    				;
+    			break;
+
+    		case '2': //excel
+    			Excel::create('New file', function($excel) use($data) {
+
+				    $excel->sheet('New sheet', function($sheet) use($data){
+
+				        $sheet->loadView('report.container_report-excel')
+                            ->with('data', $data)
+                            ->with('excelflag', true)
+                            ;
+
+				    });
+
+				})->export('xls');
+
+    			break;
+
+    		case '3': //pdf
+    			View::share ( 'data', $data );
+    			$pdf = PDF::loadView('report.container_report-excel');
+		        // download pdf
+		        // return $pdf->download('pdfview.pdf');
+		        return $pdf->stream('pdfview.pdf');
+
+    			break;
+
+    		default:
+    			# code...
+    			break;
+    	}
     }
 }

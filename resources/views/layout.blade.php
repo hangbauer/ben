@@ -125,6 +125,8 @@
             <li><a href="{{ url('/report/deliveryorder') }}"><i class="fa fa-circle-o"></i> BPB/Bukti Penerimaan Barang</a></li>
             <li><a href="{{ url('/report/deliveryorder_report') }}"><i class="fa fa-circle-o"></i> Laporan Tanda Terima</a></li>
             <li><a href="{{ url('/report/invoice_report') }}"><i class="fa fa-circle-o"></i> Laporan Invoice</a></li>
+            <li><a href="{{ url('/report/item_report') }}"><i class="fa fa-circle-o"></i> Laporan Perincian Barang</a></li>
+            <li><a href="{{ url('/report/container_report') }}"><i class="fa fa-circle-o"></i> Laporan Perincian Kontainer</a></li>
           </ul>
         </li>
       </ul>

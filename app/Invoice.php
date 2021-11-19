@@ -216,6 +216,18 @@ class Invoice {
         return $invoiceDtl;
     }
 
+    public static function getInvoiceDtlByByShipScheduleId($id){        
+        $invoiceDtl = DB::select('
+            SELECT dtl.* 
+            FROM invoicedtl dtl 
+            INNER JOIN domas do ON do.id = dtl.domasid          
+            WHERE do.shipscheduleid = ?
+            ', array($id))
+        ;
+        
+        return $invoiceDtl;
+    }
+
     public static function getDoMasByShipScheduleId($id){
         $doMas = DB::table('domas')
                     ->where('shipscheduleid', $id)
@@ -293,9 +305,15 @@ class Invoice {
         $senderId = $request->senderid == NULL ? 0 : $request->senderid;
         $recipientId = $request->recipientid == NULL ? 0 : $request->recipientid;
         $note = $request->note == NULL ? '' : $request->note;
+        $departDate = $request->departdate == NULL ? '' : Date('Y-m-d', strtotime($request->departdate));
+        $shipId = $request->shipid == NULL ? 0 : $request->shipid;
+        $destination = $request->destination == NULL ? '' : $request->destination;
         
-        $sql = "SELECT mas.*, sender.name AS sendername, recipient.name AS recipientname 
+        $sql = "SELECT DISTINCT mas.*, sender.name AS sendername, recipient.name AS recipientname 
             FROM invoicemas mas 
+            INNER JOIN invoicedtl dtl ON dtl.invoicemasid = mas.id
+            INNER JOIN domas ON domas.id = dtl.domasid
+            INNER JOIN shipschedule sh ON sh.id = domas.shipscheduleid
             LEFT JOIN sender ON sender.id = mas.senderid 
             LEFT JOIN recipient ON recipient.id = mas.recipientid 
             WHERE (mas.invoiceno LIKE CONCAT(:invoiceno1,'%') OR :invoiceno2 = '') 
@@ -303,6 +321,10 @@ class Invoice {
                 AND (mas.senderid = :senderid1 OR :senderid2 = 0) 
                 AND (mas.recipientid = :recipientid1 OR :recipientid2 = 0) 
                 AND (mas.note LIKE CONCAT(:note1,'%') OR :note2 = '') 
+                AND (sh.destination LIKE CONCAT(:destination1,'%') OR :destination2 = '') 
+                AND (sh.departdate = :departdate1 OR :departdate2 = '') 
+                AND (sh.shipid = :shipid1 OR :shipid2 = 0) 
+            ORDER BY mas.invoicedate DESC
             "
             ;
 
@@ -312,6 +334,9 @@ class Invoice {
             'senderid1' => $senderId, 'senderid2' => $senderId,
             'recipientid1' => $recipientId, 'recipientid2' => $recipientId,
             'note1' => $note, 'note2' => $note,
+            'destination1' => $destination, 'destination2' => $destination,
+            'departdate1' => $departDate, 'departdate2' => $departDate,
+            'shipid1' => $shipId, 'shipid2' => $shipId,
         ));
 
         return $listInvoice;

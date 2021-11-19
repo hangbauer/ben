@@ -237,6 +237,7 @@ class Cashierin {
                 AND (mas.senderid = :senderid1 OR :senderid2 = 0) 
                 AND (mas.recipientid = :recipientid1 OR :recipientid2 = 0) 
                 AND (mas.note LIKE CONCAT(:note1,'%') OR :note2 = '') 
+            ORDER BY mas.cashierindate DESC
             "
             ;
 

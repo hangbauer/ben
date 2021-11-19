@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice_Subreport" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isFloatColumnFooter="true" uuid="9d0446dd-ad64-4b14-96d2-2230cee80eab">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mysql"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8082/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.report.resource" value="/Report_BEN/Invoice_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/Report_BEN/Invoice"/>
+	<style name="Title" isBlankWhenNull="true" fontName="Arial" fontSize="14" isBold="true"/>
+	<style name="Default" isDefault="true" isBlankWhenNull="true" fontName="Arial" fontSize="10">
+		<paragraph leftIndent="1"/>
+	</style>
+	<parameter name="INVOICEMAS_ID" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[CALL sprRptInvoice($P{INVOICEMAS_ID} )]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="invoiceno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="invoiceno"/>
+		<property name="com.jaspersoft.studio.field.label" value="invoiceno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="senderid" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="senderid"/>
+		<property name="com.jaspersoft.studio.field.label" value="senderid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="recipientid" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="recipientid"/>
+		<property name="com.jaspersoft.studio.field.label" value="recipientid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="invoicedate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="invoicedate"/>
+		<property name="com.jaspersoft.studio.field.label" value="invoicedate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="duedate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="duedate"/>
+		<property name="com.jaspersoft.studio.field.label" value="duedate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ppnpercent" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="ppnpercent"/>
+		<property name="com.jaspersoft.studio.field.label" value="ppnpercent"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bankid" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="bankid"/>
+		<property name="com.jaspersoft.studio.field.label" value="bankid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="invoicetypeid" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="invoicetypeid"/>
+		<property name="com.jaspersoft.studio.field.label" value="invoicetypeid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="note" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="note"/>
+		<property name="com.jaspersoft.studio.field.label" value="note"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="status"/>
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="amount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="amount"/>
+		<property name="com.jaspersoft.studio.field.label" value="amount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="paidamount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="paidamount"/>
+		<property name="com.jaspersoft.studio.field.label" value="paidamount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ppnamount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="ppnamount"/>
+		<property name="com.jaspersoft.studio.field.label" value="ppnamount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="insurance" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="insurance"/>
+		<property name="com.jaspersoft.studio.field.label" value="insurance"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dtlid" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="dtlid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicedtl"/>
+	</field>
+	<field name="domasid" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="domasid"/>
+		<property name="com.jaspersoft.studio.field.label" value="domasid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicedtl"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dtlamount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="amount"/>
+		<property name="com.jaspersoft.studio.field.label" value="dtlamount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicedtl"/>
+	</field>
+	<field name="dtlnote" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="note"/>
+		<property name="com.jaspersoft.studio.field.label" value="dtlnote"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicedtl"/>
+	</field>
+	<field name="receiptno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="receiptno"/>
+		<property name="com.jaspersoft.studio.field.label" value="receiptno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="domas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dodate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="dodate"/>
+		<property name="com.jaspersoft.studio.field.label" value="dodate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="domas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="containername" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="containername"/>
+		<property name="com.jaspersoft.studio.field.label" value="containername"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="domas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="seal" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="seal"/>
+		<property name="com.jaspersoft.studio.field.label" value="seal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="domas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="domasnote" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="note"/>
+		<property name="com.jaspersoft.studio.field.label" value="domasnote"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="domas"/>
+	</field>
+	<field name="conname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="conname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="containertype"/>
+	</field>
+	<field name="itemname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="itemname"/>
+		<property name="com.jaspersoft.studio.field.label" value="itemname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="dodtl"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="itemorder" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="itemorder"/>
+		<property name="com.jaspersoft.studio.field.label" value="itemorder"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="dodtl"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="itemunit" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="itemunit"/>
+		<property name="com.jaspersoft.studio.field.label" value="itemunit"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="dodtl"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="volume" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="volume"/>
+		<property name="com.jaspersoft.studio.field.label" value="volume"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="dodtl"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dodtlnote" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="note"/>
+		<property name="com.jaspersoft.studio.field.label" value="dodtlnote"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="dodtl"/>
+	</field>
+	<field name="shipname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="shipname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ship"/>
+	</field>
+	<field name="departdate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="departdate"/>
+		<property name="com.jaspersoft.studio.field.label" value="departdate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="shipschedule"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="shipscid" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="shipscid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="shipschedule"/>
+	</field>
+	<field name="destination" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="destination"/>
+		<property name="com.jaspersoft.studio.field.label" value="destination"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="shipschedule"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="depart" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="depart"/>
+		<property name="com.jaspersoft.studio.field.label" value="depart"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="shipschedule"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="recname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="recname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="recipient"/>
+	</field>
+	<field name="recaddress" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address"/>
+		<property name="com.jaspersoft.studio.field.label" value="recaddress"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="recipient"/>
+	</field>
+	<field name="sendername" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="sendername"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sender"/>
+	</field>
+	<field name="senderaddress" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address"/>
+		<property name="com.jaspersoft.studio.field.label" value="senderaddress"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sender"/>
+	</field>
+	<field name="bankname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="bankname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bank"/>
+	</field>
+	<field name="accountname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="accountname"/>
+		<property name="com.jaspersoft.studio.field.label" value="accountname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bank"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="accountno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="accountno"/>
+		<property name="com.jaspersoft.studio.field.label" value="accountno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bank"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{containername} + " - " + $F{conname} + " / " +$F{itemname} + " / " + $F{shipname}]]></groupExpression>
+		<groupFooter>
+			<band height="1">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<line>
+					<reportElement x="0" y="0" width="555" height="1" uuid="5dd59542-ce08-4642-87d6-c66b68798f96">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="Default" isPrintRepeatedValues="false" x="1" y="0" width="350" height="15" uuid="d8c4b28d-bbd0-4cf2-aa19-8bf31c5fa7ad">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA[$F{containername} + " - " + $F{conname} + " / " +$F{itemname} + " / " + $F{shipname}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="#,###,###0.00">
+				<reportElement style="Default" x="353" y="0" width="64" height="15" uuid="bebc2ef7-b16c-4937-9da6-009ba108f5f2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" markup="none"/>
+				<textFieldExpression><![CDATA[$F{itemorder}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="#,###,##0">
+				<reportElement style="Default" x="454" y="0" width="98" height="15" uuid="42f7e260-539e-45a6-a5a2-ecc00ea02191">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" markup="none"/>
+				<textFieldExpression><![CDATA[$F{dtlamount}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="Default" x="420" y="0" width="33" height="15" uuid="1de89882-c845-48d6-813e-ec426cbae8ec">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA[$F{itemunit}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

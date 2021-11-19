@@ -226,6 +226,8 @@
       });
 
       $('.autonumeric').autoNumeric({mDec:0});
+
+      $('select[name=bankid]').focus();
     }
 
     function calculate(){

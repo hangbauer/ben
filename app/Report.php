@@ -69,8 +69,9 @@ class Report {
         $status = $request->status == NULL ? '0' : $request->status;
         $voyage = $request->voyage == NULL ? '' : $request->voyage;
         $senderId = $request->senderid == NULL ? 0 : $request->senderid;
+        $receiptNo = $request->receiptno == NULL ? '' : $request->receiptno;
 
-        $sql = "CALL sprRptDeliveryOrderReport(:departdate, :shipid, :recipientid, :status, :voyage, :senderid)";
+        $sql = "CALL sprRptDeliveryOrderReport(:departdate, :shipid, :recipientid, :status, :voyage, :senderid, :receiptno)";
 
         $result = DB::select($sql, array(
             'departdate' => $departDate,
@@ -79,6 +80,7 @@ class Report {
             'status' => $status,
             'voyage' => $voyage,
             'senderid' => $senderId,
+            'receiptno' => $receiptNo,
             ));
 
         return $result;

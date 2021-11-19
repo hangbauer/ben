@@ -45,10 +45,12 @@ class InvoiceController extends Controller
     {
         $dropDownSender = Sender::getDropDownSender();
         $dropDownRecipient = Recipient::getDropDownRecipient();
+        $dropDownShip = Ship::getDropDownShip();
         
         return view('invoice.index')
             ->with('dropDownSender', $dropDownSender)
             ->with('dropDownRecipient', $dropDownRecipient)
+            ->with('dropDownShip', $dropDownShip)
             ;        
     }
 

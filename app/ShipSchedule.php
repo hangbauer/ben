@@ -167,7 +167,7 @@ class ShipSchedule {
                 AND (mas.shipid = :shipid1 OR :shipid2 = 0)
                 AND (mas.destination LIKE CONCAT(:destination1,'%') OR :destination2 = '')
                 AND (mas.note LIKE CONCAT(:note1,'%') OR :note2 = '')
-            ORDER BY mas.departdate
+            ORDER BY mas.departdate DESC
             "
             ;
 
