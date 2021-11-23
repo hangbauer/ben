@@ -14,6 +14,7 @@ use App\Ship;
 use App\Recipient;
 use App\Sender;
 use App\PaymentType;
+use App\Invoice;
 
 class ReportController extends Controller
 {
@@ -207,8 +208,12 @@ class ReportController extends Controller
 
     public function invoiceJasper(Request $request)
     {
-        $url = 'http://localhost:8082/jasperserver/rest_v2/reports/Report_BEN/Invoice.pdf?INVOICEMAS_ID=4';
+        $invoice = Invoice::getInvoiceMasByID($request->invoicemasid);
+        $terbilang = terbilang(round($invoice[0]->amount)) . " Rupiah";
+
+        $url = 'http://localhost:8082/jasperserver/rest_v2/reports/Report_BEN/Invoice.pdf?INVOICEMAS_ID='.$invoice[0]->id.'&TERBILANG='.urlencode($terbilang);
         // $headers = array('Content-Type: application/json', 'Accept: application/pdf', 'Connection: Keep-Alive');
+        // var_dump($url);die;
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);

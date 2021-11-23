@@ -357,11 +357,12 @@ BEGIN
 		ship.name AS shipname, shipsc.departdate, shipsc.destination, shipsc.note AS shipscnote, shipsc.voyage, 
 		shipsc.depart,
         mas.containername, mas.seal, mas.receiptno,
-        rec.name recname,
+        rec.name recname,sen.name senname,
         dtl.itemname, dtl.itemorder, dtl.itemunit, dtl.volume, dtl.note AS dtlnote
     FROM domas mas
     INNER JOIN dodtl dtl ON dtl.domasid = mas.id 
     INNER JOIN recipient rec ON rec.id = mas.recipientid 
+    INNER JOIN sender sen ON sen.id = mas.senderid
     LEFT OUTER JOIN shipschedule shipsc ON mas.shipscheduleid = shipsc.id 
     LEFT OUTER JOIN ship ON shipsc.shipid = ship.id     
     WHERE 

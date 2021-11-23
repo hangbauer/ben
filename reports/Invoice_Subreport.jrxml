@@ -287,7 +287,7 @@
 				<textElement markup="none"/>
 				<textFieldExpression><![CDATA[$F{containername} + " - " + $F{conname} + " / " +$F{itemname} + " / " + $F{shipname}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" pattern="#,###,###0.00">
+			<textField textAdjust="StretchHeight" pattern="#,###,###0">
 				<reportElement style="Default" x="353" y="0" width="64" height="15" uuid="bebc2ef7-b16c-4937-9da6-009ba108f5f2">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
