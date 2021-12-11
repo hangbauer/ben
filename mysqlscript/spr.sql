@@ -1,19 +1,23 @@
 DROP PROCEDURE IF EXISTS `sprRptLoadingList`;
 DELIMITER $$
-CREATE PROCEDURE `sprRptLoadingList`(IN departDate VARCHAR(10), IN intShipId INT, IN strVoyage VARCHAR(100))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sprRptLoadingList`(IN departDate VARCHAR(10), IN intShipId INT, IN strVoyage VARCHAR(100))
 BEGIN
 	SELECT 
 		ship.name AS shipname, shipsc.departdate, shipsc.destination, shipsc.note AS shipscnote, shipsc.voyage, 
 		shipsc.depart,
         mas.containername, mas.seal, rec.name AS recname, term.name AS termname,
-        dtl.itemname, dtl.itemorder, dtl.itemunit, dtl.volume, dtl.note AS dtlnote, contype.name AS contypename
+        dtl.itemname, dtl.itemorder, dtl.itemunit, dtl.volume, dtl.note AS dtlnote, contype.name AS contypename,        
+        sen.name AS sendname,invmas.invoiceno
     FROM shipschedule shipsc 
 	INNER JOIN domas mas ON mas.shipscheduleid = shipsc.id 
 	INNER JOIN dodtl dtl ON dtl.domasid = mas.id 
     INNER JOIN ship ON shipsc.shipid = ship.id 
     INNER JOIN recipient rec ON rec.id = mas.recipientid 
     INNER JOIN term ON term.id = mas.termid
-    INNER JOIN containertype contype ON contype.id = mas.containertypeid
+    INNER JOIN containertype contype ON contype.id = mas.containertypeid    
+    INNER JOIN sender sen on mas.senderid = sen.id
+    LEFT JOIN invoicedtl invdtl on mas.id = invdtl.domasid
+    LEFT JOIN invoicemas invmas on invdtl.invoicemasid = invmas.id
     WHERE 
 		('' = departDate OR shipsc.departdate = departDate) 
         AND (0 = intShipId OR shipsc.shipid = intShipId) 
@@ -22,6 +26,7 @@ BEGIN
     ;
 END$$
 DELIMITER ;
+
 
 
 
@@ -57,6 +62,7 @@ BEGIN
 	SELECT
 		mas.id, mas.invoiceno, mas.senderid, mas.recipientid, mas.invoicedate, mas.duedate, 
         mas.ppnpercent, mas.bankid, mas.invoicetypeid, mas.note, mas.status, mas.amount, mas.paidamount, mas.ppnamount, mas.insurance,
+        mas.quarantine,
         dtl.id AS dtlid, dtl.domasid, dtl.amount AS dtlamount, dtl.note AS dtlnote,        
         domas.receiptno, domas.dodate, domas.containername, domas.seal, domas.note AS domasnote, con.name as conname,
         dodtl.itemname, dodtl.itemorder, dodtl.itemunit, dodtl.volume, dodtl.note AS dodtlnote,
@@ -138,23 +144,27 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `sprRptItem`;
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sprRptItem`(IN departDate VARCHAR(10), IN intShipId INT, IN intIsShip INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sprRptItem`(IN intShipId INT, IN intIsShip INT, IN containerName VARCHAR(50), IN intRecId INT, IN intSendId INT, IN dateFrom VARCHAR(10), IN dateTo VARCHAR(10))
 BEGIN
 	SELECT 
 		ship.name AS shipname, shipsc.departdate, shipsc.destination, shipsc.note AS shipscnote, shipsc.voyage, 
 		shipsc.depart,
         mas.containername, mas.seal, mas.receiptno,
-        rec.name recname,
+        rec.name recname,sen.name senname,
         dtl.itemname, dtl.itemorder, dtl.itemunit, dtl.volume, dtl.note AS dtlnote
     FROM domas mas
     INNER JOIN dodtl dtl ON dtl.domasid = mas.id 
     INNER JOIN recipient rec ON rec.id = mas.recipientid 
+    INNER JOIN sender sen ON sen.id = mas.senderid
     LEFT OUTER JOIN shipschedule shipsc ON mas.shipscheduleid = shipsc.id 
     LEFT OUTER JOIN ship ON shipsc.shipid = ship.id     
     WHERE 
-		('ALL' = departDate OR shipsc.departdate = departDate) 
+		(shipsc.departdate BETWEEN dateFrom AND dateTo) 
         AND (0 = intShipId OR shipsc.shipid = intShipId) 
         AND ((0 = intIsShip AND shipsc.id IS NULL) OR (1 = intIsShip AND shipsc.id IS NOT NULL )) 
+        AND (0 = intRecId OR mas.recipientid = intRecId) 
+        AND (0 = intSendId OR mas.senderid = intSendId) 
+        
 	ORDER BY ship.name, departdate, mas.containername
     ;
 END$$

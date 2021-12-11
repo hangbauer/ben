@@ -360,19 +360,27 @@ class ReportController extends Controller
         View::share ( 'subMenuName', 'Laporan Perincian Barang' );
 
         $dropDownShip = Ship::getDropDownShip();
+        $dropDownRecipient = Recipient::getDropDownRecipient();
+        $dropDownSender = Sender::getDropDownSender();
 
         return view('report.item_report')
-            ->with('dropDownShip', $dropDownShip)            
+            ->with('dropDownShip', $dropDownShip)     
+            ->with('dropDownRecipient', $dropDownRecipient)
+            ->with('dropDownSender', $dropDownSender)       
             ;
     }
 
     public function itemReportJasper(Request $request)
     {
-        $departDate = $request->departdate == NULL ? 'ALL' : Date('Y-m-d', strtotime($request->departdate));
+        $dateFrom = $request->datefrom == NULL ? 'ALL' : Date('Y-m-d', strtotime($request->datefrom));
+        $dateTo = $request->dateto == NULL ? 'ALL' : Date('Y-m-d', strtotime($request->dateto));
         $shipId = $request->shipid == NULL ? 0 : $request->shipid;
         $isShip = $request->isship == NULL ? 0 : $request->isship;
+        $containerName = $request->containername == NULL ? 'ALL' : $request->containername;
+        $recId = $request->recipientid == NULL ? 0 : $request->recipientid;
+        $sendId = $request->senderid == NULL ? 0 : $request->senderid;
 
-        $url = $this->jasperUrl . 'ItemReport.pdf?DEPART_DATE='.$departDate.'&SHIP_ID='.$shipId.'&IS_SHIP='.$isShip;
+        $url = $this->jasperUrl . 'ItemReport.pdf?DATE_FROM='.$dateFrom.'&DATE_TO='.$dateTo.'&SHIP_ID='.$shipId.'&IS_SHIP='.$isShip.'&CONTAINER_NAME='.$containerName.'&REC_ID='.$recId.'&SEND_ID='.$sendId;
         
         // $headers = array('Content-Type: application/json', 'Accept: application/pdf', 'Connection: Keep-Alive');
         $curl = curl_init();

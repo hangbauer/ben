@@ -200,6 +200,12 @@
                 <td></td>
               </tr>
               <tr>
+                <td>KARANTINA</td>
+                <td></td>
+                <td><input type="text" class="form-control text-right autonumeric quarantine" name="quarantine" value="{{ isset($invoice['invoiceMas']) ? $invoice['invoiceMas'][0]->quarantine : 0 }}"></td>
+                <td></td>
+              </tr>
+              <tr>
                 <td>GRAND TOTAL</td>
                 <td></td>
                 <td><input type="text" class="form-control text-right autonumeric grandtotal" name="grandtotal" value="0" readonly></td>
@@ -327,6 +333,11 @@
         setLock();
       });
 
+      $('input[name=quarantine]').on('change', function(){
+        calculate();
+        setLock();
+      });
+
       $('select[name=invoicetypeid]').on('change', function(){
         switch($(this).val()){
           case '0': //sender
@@ -357,9 +368,17 @@
         }
       });
 
+      $(document).on("keypress", ":input:not(textarea)", function(event) {
+          if (event.keyCode == 13) {
+              event.preventDefault();
+          }
+      });
+
       $("#table-detail").on("focus", ".amount", function() { $(this).select(); } );
 
       $('select[name=invoicetypeid]').trigger('change');
+
+
     });
 
     function init(){
@@ -481,7 +500,8 @@
       var ppnpercent = $('input[name=ppnpercent]').autoNumeric('get');
       var ppn = parseFloat(ppnpercent) * total / 100;
       var insurance = parseFloat($('input[name=insurance]').autoNumeric('get'));
-      grandtotal = total + ppn + insurance;
+      var quarantine = parseFloat($('input[name=quarantine]').autoNumeric('get'));
+      grandtotal = total + ppn + insurance + quarantine;
 
       $('input[name=total]').autoNumeric('set', total);
       $('input[name=ppn]').autoNumeric('set', ppn);

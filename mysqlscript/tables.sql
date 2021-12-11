@@ -190,6 +190,7 @@ CREATE TABLE `invoicemas` (
   `paidamount` decimal(20,2) DEFAULT '0.00',
   `ppnamount` decimal(20,2) DEFAULT '0.00',
   `insurance` decimal(20,2) DEFAULT '0.00',
+  `quarantine` decimal(20,2) DEFAULT '0.00',
   `shipid` int(11) DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) NOT NULL,

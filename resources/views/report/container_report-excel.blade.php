@@ -25,9 +25,12 @@
       <thead>
           <tr>
             <th>Nama Kapal</th>
-            <th>Tanggal Berangkat</th>            
+            <th>Tanggal Berangkat</th>    
+            <th>Penerima</th>    
+            <th>Pengirim</th>    
             <th>No. Kontainer</th>
-            <th>No. Seal</th>            
+            <th>No. Seal</th> 
+            <th>No. Invoice</th> 
           </tr>
       </thead>
       <tbody>
@@ -35,8 +38,11 @@
           <tr>              
               <td>{{ $dtl->shipname }}</td>              
               <td>{{ Date('d F Y', strtotime($dtl->departdate)) }}</td>  
-              <td>{{ $dtl->containername }}</td>              
+              <td>{{ $dtl->recname }}</td>              
+              <td>{{ $dtl->sendname }}</td>  
+              <td>{{ $dtl->containername }}</td>  
               <td>{{ $dtl->seal }}</td>             
+              <td>{{ $dtl->invoiceno }}</td>
           </tr>
         @endforeach    
       </tbody>  

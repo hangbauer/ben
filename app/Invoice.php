@@ -66,6 +66,7 @@ class Invoice {
                 'amount'        => $amount + ($request->ppnpercent * ($amount / 100)) + (float)str_replace(",", "", $request->insurance),
                 'ppnamount'     => ($request->ppnpercent * ($amount / 100)),
                 'insurance'     => (float)str_replace(",", "", $request->insurance),
+                'quarantine'    => (float)str_replace(",", "", $request->quarantine),
                 'status'        => 0,      
                 'created_at'    => Date('Y-m-d h:i:s'),
                 'updated_at'    => Date('Y-m-d h:i:s'),
@@ -87,6 +88,7 @@ class Invoice {
                 'amount'        => $amount + ($request->ppnpercent * ($amount / 100)) + (float)str_replace(",", "", $request->insurance),
                 'ppnamount'     => ($request->ppnpercent * ($amount / 100)),
                 'insurance'     => (float)str_replace(",", "", $request->insurance),
+                'quarantine'    => (float)str_replace(",", "", $request->quarantine),
                 'updated_at'    => Date('Y-m-d h:i:s'),
                 'updated_by'    => $userid,
                 'branchid'      => $branchid

@@ -106,6 +106,12 @@
 		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="quarantine" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="quarantine"/>
+		<property name="com.jaspersoft.studio.field.label" value="quarantine"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="dtlid" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
 		<property name="com.jaspersoft.studio.field.label" value="dtlid"/>
@@ -195,7 +201,7 @@
 		<property name="com.jaspersoft.studio.field.label" value="shipname"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="ship"/>
 	</field>
-	<field name="departdate" class="java.sql.Date">
+	<field name="departdate" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="departdate"/>
 		<property name="com.jaspersoft.studio.field.label" value="departdate"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="shipschedule"/>
@@ -620,15 +626,6 @@ A/C Nomor	: 1805937588]]></text>
 				<text><![CDATA[Total]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="353" y="17" width="100" height="15" uuid="7475f1e5-1f2d-4a25-8449-e88e52410e16">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
-				</reportElement>
-				<text><![CDATA[PPN 1%]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="353" y="33" width="100" height="15" uuid="1c69c504-78dd-46c5-831f-11fd2e744f91">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -642,9 +639,9 @@ A/C Nomor	: 1805937588]]></text>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER}) && $F{quarantine}.compareTo(BigDecimal.ZERO) > 0]]></printWhenExpression>
 				</reportElement>
-				<text><![CDATA[Grand Total]]></text>
+				<text><![CDATA[Karantina]]></text>
 			</staticText>
 			<textField textAdjust="StretchHeight" pattern="#,###,##0">
 				<reportElement style="Default" x="454" y="1" width="98" height="15" uuid="85eb0c91-46a2-4087-be1a-76454793d78a">
@@ -685,10 +682,10 @@ A/C Nomor	: 1805937588]]></text>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER}) && $F{quarantine}.compareTo(BigDecimal.ZERO) > 0]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" markup="none"/>
-				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{quarantine}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="352" y="16" width="203" height="1" uuid="0810a8b5-7fff-4a08-8186-33689e8bdccc">
@@ -718,7 +715,7 @@ A/C Nomor	: 1805937588]]></text>
 				</reportElement>
 			</line>
 			<line>
-				<reportElement x="0" y="64" width="555" height="1" uuid="0c9b2960-40c7-46ca-8648-70c1e30391e2">
+				<reportElement x="0" y="79" width="555" height="1" uuid="0c9b2960-40c7-46ca-8648-70c1e30391e2">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -727,7 +724,7 @@ A/C Nomor	: 1805937588]]></text>
 				</reportElement>
 			</line>
 			<line>
-				<reportElement x="352" y="1" width="1" height="63" uuid="0c50061b-1df2-4444-b681-d0ef6efa48c4">
+				<reportElement x="352" y="1" width="1" height="78" uuid="0c50061b-1df2-4444-b681-d0ef6efa48c4">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -735,7 +732,7 @@ A/C Nomor	: 1805937588]]></text>
 				</reportElement>
 			</line>
 			<line>
-				<reportElement x="554" y="1" width="1" height="63" uuid="d9094909-34cb-4e88-b453-c926a4bb5ace">
+				<reportElement x="554" y="1" width="1" height="78" uuid="d9094909-34cb-4e88-b453-c926a4bb5ace">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -743,7 +740,7 @@ A/C Nomor	: 1805937588]]></text>
 				</reportElement>
 			</line>
 			<line>
-				<reportElement x="453" y="1" width="1" height="63" uuid="3d8c4650-191d-4fce-8a5e-29b4ed620301">
+				<reportElement x="453" y="1" width="1" height="78" uuid="3d8c4650-191d-4fce-8a5e-29b4ed620301">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -751,7 +748,7 @@ A/C Nomor	: 1805937588]]></text>
 				</reportElement>
 			</line>
 			<line>
-				<reportElement x="0" y="0" width="1" height="64" uuid="154c96c8-b72b-420a-911a-3f8837c470ed">
+				<reportElement x="0" y="0" width="1" height="79" uuid="154c96c8-b72b-420a-911a-3f8837c470ed">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -765,6 +762,42 @@ A/C Nomor	: 1805937588]]></text>
 				</reportElement>
 				<textElement markup="none"/>
 				<textFieldExpression><![CDATA[$P{TERBILANG}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="353" y="64" width="100" height="15" uuid="5dcc2df0-80a1-4368-a0b4-9f30b640b9df">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
+				</reportElement>
+				<text><![CDATA[Grand Total]]></text>
+			</staticText>
+			<textField textAdjust="StretchHeight" pattern="#,###,##0">
+				<reportElement style="Default" x="454" y="64" width="98" height="15" uuid="6af1248c-b5e9-4800-8d87-57d9c3069930">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" markup="none"/>
+				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="352" y="64" width="203" height="1" uuid="3efa895b-e618-420f-aec1-718e8bebeeae">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="Default" x="353" y="17" width="100" height="15" uuid="f0dc17ad-043a-4960-8776-8b9e94746b21">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA["PPN " + IF($F{ppnpercent}.equals(0),"",IF($F{ppnpercent}.equals(1),"1%","10%"))]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

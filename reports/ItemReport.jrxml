@@ -12,11 +12,15 @@
 	<style name="Default" isDefault="true" isBlankWhenNull="true" fontName="Arial" fontSize="10">
 		<paragraph leftIndent="1"/>
 	</style>
-	<parameter name="DEPART_DATE" class="java.lang.String"/>
 	<parameter name="SHIP_ID" class="java.lang.Integer"/>
 	<parameter name="IS_SHIP" class="java.lang.Integer"/>
+	<parameter name="REC_ID" class="java.lang.Integer"/>
+	<parameter name="SEND_ID" class="java.lang.Integer"/>
+	<parameter name="DATE_FROM" class="java.lang.String"/>
+	<parameter name="DATE_TO" class="java.lang.String"/>
+	<parameter name="CONTAINER_NAME" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[CALL sprRptItem( $P{DEPART_DATE}  , $P{SHIP_ID} , $P{IS_SHIP} )]]>
+		<![CDATA[CALL sprRptItem($P{SHIP_ID} , $P{IS_SHIP} , $P{CONTAINER_NAME}, $P{REC_ID} , $P{SEND_ID}, $P{DATE_FROM} , $P{DATE_TO} )]]>
 	</queryString>
 	<field name="shipname" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
