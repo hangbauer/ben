@@ -169,3 +169,34 @@ BEGIN
     ;
 END$$
 DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sprRptContainerList`(IN dateFrom VARCHAR(10), IN dateTo VARCHAR(10), IN intShipId INT, IN strVoyage VARCHAR(100), IN intRecId INT, IN intSendId INT)
+BEGIN
+	SELECT 
+		ship.name AS shipname, shipsc.departdate, shipsc.destination, shipsc.note AS shipscnote, shipsc.voyage, 
+		shipsc.depart,
+        mas.containername, mas.seal, rec.name AS recname, term.name AS termname,
+        dtl.itemname, dtl.itemorder, dtl.itemunit, dtl.volume, dtl.note AS dtlnote, contype.name AS contypename,        
+        sen.name AS sendname,invmas.invoiceno
+    FROM shipschedule shipsc 
+	INNER JOIN domas mas ON mas.shipscheduleid = shipsc.id 
+	INNER JOIN dodtl dtl ON dtl.domasid = mas.id 
+    INNER JOIN ship ON shipsc.shipid = ship.id 
+    INNER JOIN recipient rec ON rec.id = mas.recipientid 
+    INNER JOIN term ON term.id = mas.termid
+    INNER JOIN containertype contype ON contype.id = mas.containertypeid    
+    INNER JOIN sender sen on mas.senderid = sen.id
+    LEFT JOIN invoicedtl invdtl on mas.id = invdtl.domasid
+    LEFT JOIN invoicemas invmas on invdtl.invoicemasid = invmas.id
+    WHERE 
+		#('' = departDate OR shipsc.departdate = departDate) 
+        (shipsc.departdate BETWEEN dateFrom AND dateTo) 
+        AND (0 = intShipId OR shipsc.shipid = intShipId) 
+        AND ('' = strVoyage OR shipsc.voyage = strVoyage)
+        AND (0 = intRecId OR mas.recipientid = intRecId) 
+        AND (0 = intSendId OR mas.senderid = intSendId) 
+	ORDER BY ship.name, departdate, mas.containername
+    ;
+END$$
+DELIMITER ;

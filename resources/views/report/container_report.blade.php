@@ -31,12 +31,25 @@
 					<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
-									<label for="code">Tanggal Berangkat</label>
+									<label for="code">Tanggal Awal</label>
 									<div class="input-group date">
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
-										<input type="text" class="form-control pull-right datepicker" name="datefr" autocomplete="off">
+										<input type="text" class="form-control pull-right datepicker" name="datefr" value="{{date('d-M-Y')}}" autocomplete="off">
+									</div>
+								<!-- /.input group -->
+								</div>
+								<!-- /.form group -->
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="code">Tanggal Akhir</label>
+									<div class="input-group date">
+										<div class="input-group-addon">
+											<i class="fa fa-calendar"></i>
+										</div>
+										<input type="text" class="form-control pull-right datepicker" name="dateto" value="{{date('d-M-Y')}}" autocomplete="off">
 									</div>
 								<!-- /.input group -->
 								</div>
@@ -53,6 +66,30 @@
 									</select>
 					            </div>
 					          </div>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+					            <div class="form-group">
+									<label for="senderid">Nama Pengirim</label>
+									<select class="form-control select2" style="width: 100%;" name="senderid">
+										<option value=""></option>
+										@foreach($dropDownSender as $sender)
+											<option value="{{ $sender->id }}" >{{ $sender->name }}</option>
+										@endforeach
+									</select>
+					            </div>
+					        </div>
+							<div class="col-md-4">
+					            <div class="form-group">
+									<label for="recipientid">Nama Penerima</label>
+									<select class="form-control select2" style="width: 100%;" name="recipientid">
+										<option value=""></option>
+										@foreach($dropDownRecipient as $recipient)
+											<option value="{{ $recipient->id }}" >{{ $recipient->name }}</option>
+										@endforeach
+									</select>
+					            </div>
+					        </div>
 						</div>
 						<div class="row">
 							<div class="col-md-4">
@@ -110,7 +147,7 @@
 				autoclose: true
 			});
 
-			$('input[name=datefr]').focus();
+			// $('input[name=datefr]').focus();
 		}
 
 

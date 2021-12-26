@@ -105,4 +105,26 @@ class Report {
 
         return $result;
     }
+
+    public static function getContainerListData($request, $userid, $branchid){
+        $dateFr = $request->datefr == NULL ? '' : Date('Y-m-d', strtotime($request->datefr));
+        $dateTo = $request->dateto == NULL ? '' : Date('Y-m-d', strtotime($request->dateto));
+        $shipId = $request->shipid == NULL ? 0 : $request->shipid;
+        $voyage = $request->voyage == NULL ? '' : $request->voyage;
+        $recId = $request->recipientid == NULL ? 0 : $request->recipientid;
+        $sendId = $request->senderid == NULL ? 0 : $request->senderid;
+
+        $sql = "CALL sprRptContainerList(:datefr, :dateto, :shipid, :voyage, :recid, :sendid)";
+
+        $result = DB::select($sql, array(
+            'datefr' => $dateFr,
+            'dateto' => $dateTo,
+            'shipid' => $shipId,
+            'voyage' => $voyage,
+            'recid' => $recId,
+            'sendid' => $sendId,
+            ));
+        
+        return $result;
+    }
 }

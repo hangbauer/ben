@@ -418,15 +418,19 @@ class ReportController extends Controller
         View::share ( 'subMenuName', 'Laporan Perincian Kontainer' );
 
         $dropDownShip = Ship::getDropDownShip();
+        $dropDownRecipient = Recipient::getDropDownRecipient();
+        $dropDownSender = Sender::getDropDownSender();
 
         return view('report.container_report')
-            ->with('dropDownShip', $dropDownShip)            
+            ->with('dropDownShip', $dropDownShip)           
+            ->with('dropDownRecipient', $dropDownRecipient)
+            ->with('dropDownSender', $dropDownSender)        
             ;
     }
 
     public function ContainerReportExcel(Request $request)
     {
-    	$data = Report::getLoadingListData($request, $this->userid, $this->branchid);
+    	$data = Report::getContainerListData($request, $this->userid, $this->branchid);
 
     	switch ($request->reporttypeid) {
     		case '1': //html
