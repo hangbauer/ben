@@ -37,7 +37,7 @@ class Report {
         $shipId = $request->shipid == NULL ? 0 : $request->shipid;
         $recipientId = $request->recipientid == NULL ? 0 : $request->recipientid;
         $paymentTypeId = $request->paymenttypeid == NULL ? 0 : $request->paymenttypeid;
-
+        
         $sql = "CALL sprRptDeliveryOrder(:departdate, :shipid, :recipientid, :paymenttypeid)";
 
         $result = DB::select($sql, array(

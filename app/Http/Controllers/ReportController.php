@@ -108,6 +108,12 @@ class ReportController extends Controller
     public function deliveryOrderExcel(Request $request)
     {
         $data = Report::getDeliveryOrderData($request, $this->userid, $this->branchid);
+        
+        if(count($data) == 0){
+            return 'No Data';
+        }
+
+        ini_set("pcre.backtrack_limit", "5000000");
 
         $ve = view('report.deliveryorder-pdf')
         ->with('data', $data);
@@ -262,7 +268,7 @@ class ReportController extends Controller
     public function deliveryOrderReportExcel(Request $request)
     {
         $data = Report::getDeliveryOrderReportData($request, $this->userid, $this->branchid);
-
+        
         switch ($request->reporttypeid) {
             case '1': //html
                 return view('report.deliveryorder_report-excel')
@@ -380,7 +386,26 @@ class ReportController extends Controller
         $recId = $request->recipientid == NULL ? 0 : $request->recipientid;
         $sendId = $request->senderid == NULL ? 0 : $request->senderid;
 
-        $url = $this->jasperUrl . 'ItemReport.pdf?DATE_FROM='.$dateFrom.'&DATE_TO='.$dateTo.'&SHIP_ID='.$shipId.'&IS_SHIP='.$isShip.'&CONTAINER_NAME='.$containerName.'&REC_ID='.$recId.'&SEND_ID='.$sendId;
+        $format = 'pdf';
+        switch ($request->reporttypeid) {
+            case '1': //html
+    			$format = 'html';
+    			break;
+
+    		case '2': //excel
+    			$format = 'xlsx';
+    			break;
+
+    		case '3': //pdf
+    			$format = 'pdf';
+
+    			break;
+
+    		default:
+    			# code...
+    			break;
+    	}
+        $url = $this->jasperUrl . 'ItemReport.'.$format.'?DATE_FROM='.$dateFrom.'&DATE_TO='.$dateTo.'&SHIP_ID='.$shipId.'&IS_SHIP='.$isShip.'&CONTAINER_NAME='.$containerName.'&REC_ID='.$recId.'&SEND_ID='.$sendId;
         
         // $headers = array('Content-Type: application/json', 'Accept: application/pdf', 'Connection: Keep-Alive');
         $curl = curl_init();
@@ -406,8 +431,12 @@ class ReportController extends Controller
                 $headers[$header_pieces[0]] = trim($header_pieces[1]);
             }
         }
+        // var_dump($headers);die;
         header('Content-type: ' . $headers['Content-Type']);
-        header('Content-Disposition: ' . $headers['Content-Disposition']);
+        if($format == 'pdf'){
+            header('Content-Disposition: ' . $headers['Content-Disposition']);
+        }
+        
         // echo substr($file_array[1], 1);
 
         return substr($file_array[1], 1);

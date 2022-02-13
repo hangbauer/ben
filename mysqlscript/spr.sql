@@ -32,7 +32,7 @@ DELIMITER ;
 
 DROP procedure IF EXISTS `sprRptDeliveryOrder`;
 DELIMITER $$
-CREATE PROCEDURE `sprRptDeliveryOrder`(IN departDate VARCHAR(10), IN intShipId INT, IN intRecipientId INT, IN intPaymentTypeId INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sprRptDeliveryOrder`(IN departDate VARCHAR(10), IN intShipId INT, IN intRecipientId INT, IN intPaymentTypeId INT)
 BEGIN
 	SELECT
 		mas.receiptno, mas.dodate, mas.containername, mas.seal, mas.note, mas.recipientid,
@@ -42,7 +42,7 @@ BEGIN
 	FROM domas mas 
     INNER JOIN dodtl dtl ON dtl.domasid = mas.id
     INNER JOIN shipschedule shipsc ON shipsc.id = mas.shipscheduleid 
-    INNER JOIN ship ON ship.id = shipsc.id
+    INNER JOIN ship ON ship.id = shipsc.shipid
     INNER JOIN recipient rec ON rec.id = mas.recipientid
     INNER JOIN containertype contype ON contype.id = mas.containertypeid
     WHERE 
@@ -54,6 +54,7 @@ BEGIN
     ;
 END$$
 DELIMITER ;
+
 
 DROP procedure IF EXISTS `sprRptInvoice`;
 DELIMITER $$

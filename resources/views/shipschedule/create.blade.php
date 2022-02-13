@@ -209,15 +209,20 @@
       });
 
       $('#table-detail').on('click', '.btnDelete', function(){
-        var numItems = $('.btnDelete').length
+        // var numItems = $('.btnDelete').length
 
-        if(numItems == 1){
-            alert('Tidak bisa menghapus data terakhir, tambah data baru terlebih dahulu atau ubah data yang ada')
-        }else{
-            if(confirm('Yakin ingin menghapus?')){
-                var id = $(this).closest('tr').find('.domasid').val();
-                $(this).closest('tr').remove();
-            }
+        // if(numItems == 1){
+        //     alert('Tidak bisa menghapus data terakhir, tambah data baru terlebih dahulu atau ubah data yang ada')
+        // }else{
+        //     if(confirm('Yakin ingin menghapus?')){
+        //         var id = $(this).closest('tr').find('.domasid').val();
+        //         $(this).closest('tr').remove();
+        //     }
+        // }
+
+        if(confirm('Yakin ingin menghapus?')){
+          var id = $(this).closest('tr').find('.domasid').val();
+          $(this).closest('tr').remove();
         }
       });
 

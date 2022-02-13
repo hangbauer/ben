@@ -471,7 +471,7 @@ END$$
 DELIMITER ;
 
 
-##################################################################################################
+#######################################2022-01-08###########################################################
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sprRptContainerList`(IN dateFrom VARCHAR(10), IN dateTo VARCHAR(10), IN intShipId INT, IN strVoyage VARCHAR(100), IN intRecId INT, IN intSendId INT)
 BEGIN
@@ -499,6 +499,33 @@ BEGIN
         AND (0 = intRecId OR mas.recipientid = intRecId) 
         AND (0 = intSendId OR mas.senderid = intSendId) 
 	ORDER BY ship.name, departdate, mas.containername
+    ;
+END$$
+DELIMITER ;
+
+
+#######################################2022-02-13###########################################################
+DROP procedure IF EXISTS `sprRptDeliveryOrder`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sprRptDeliveryOrder`(IN departDate VARCHAR(10), IN intShipId INT, IN intRecipientId INT, IN intPaymentTypeId INT)
+BEGIN
+	SELECT
+		mas.receiptno, mas.dodate, mas.containername, mas.seal, mas.note, mas.recipientid,
+        dtl.itemname, dtl.itemorder, dtl.itemunit, dtl.volume, dtl.note AS dtlnote,
+        ship.name AS shipname, shipsc.departdate, shipsc.id AS shipscid, 
+        rec.name AS recname, rec.address AS recaddress, contype.name AS contypename                
+	FROM domas mas 
+    INNER JOIN dodtl dtl ON dtl.domasid = mas.id
+    INNER JOIN shipschedule shipsc ON shipsc.id = mas.shipscheduleid 
+    INNER JOIN ship ON ship.id = shipsc.shipid
+    INNER JOIN recipient rec ON rec.id = mas.recipientid
+    INNER JOIN containertype contype ON contype.id = mas.containertypeid
+    WHERE 
+		('' = departDate OR shipsc.departdate = departDate) 
+        AND (0 = intShipId OR shipsc.shipid = intShipId) 
+        AND (0 = intRecipientId OR mas.recipientid = intRecipientId)
+		AND (0 = intPaymentTypeId OR mas.paymenttypeid = intPaymentTypeId)		
+	ORDER BY ship.name, shipsc.departdate, rec.name, mas.receiptno, mas.containername 
     ;
 END$$
 DELIMITER ;
