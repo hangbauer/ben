@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice_Subreport" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isFloatColumnFooter="true" uuid="9d0446dd-ad64-4b14-96d2-2230cee80eab">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice_Subreport2" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isFloatColumnFooter="true" uuid="9d0446dd-ad64-4b14-96d2-2230cee80eab">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mysql"/>
 	<property name="ireport.jasperserver.url" value="http://localhost:8082/jasperserver/"/>
@@ -12,8 +12,9 @@
 		<paragraph leftIndent="1"/>
 	</style>
 	<parameter name="INVOICEMAS_ID" class="java.lang.Integer"/>
+	<parameter name="CONTAINER_NAME" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[CALL sprRptInvoice($P{INVOICEMAS_ID} )]]>
+		<![CDATA[CALL sprRptInvoiceDtl($P{INVOICEMAS_ID} ,$P{CONTAINER_NAME})]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
@@ -256,65 +257,9 @@
 	</field>
 	<group name="Group1">
 		<groupExpression><![CDATA[$F{containername}]]></groupExpression>
-		<groupHeader>
-			<band height="17">
-				<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				<textField textAdjust="StretchHeight">
-					<reportElement style="Default" isPrintRepeatedValues="false" x="1" y="2" width="80" height="15" uuid="d8c4b28d-bbd0-4cf2-aa19-8bf31c5fa7ad">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-					</reportElement>
-					<textElement markup="none"/>
-					<textFieldExpression><![CDATA[$F{containername}]]></textFieldExpression>
-				</textField>
-				<textField textAdjust="StretchHeight">
-					<reportElement style="Default" x="82" y="2" width="20" height="15" uuid="e98da933-55e2-45fe-9de3-1ea59691c282">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-					</reportElement>
-					<textElement markup="none"/>
-					<textFieldExpression><![CDATA[$F{conname}]]></textFieldExpression>
-				</textField>
-				<textField textAdjust="StretchHeight" pattern="#,###,##0">
-					<reportElement style="Default" x="454" y="2" width="98" height="15" uuid="42f7e260-539e-45a6-a5a2-ecc00ea02191">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<textElement textAlignment="Right" markup="none"/>
-					<textFieldExpression><![CDATA[$F{dtlamount}]]></textFieldExpression>
-				</textField>
-				<subreport>
-					<reportElement x="104" y="2" width="346" height="15" uuid="79d5dc7b-ca38-4ced-bdfa-2de05f5591ce"/>
-					<subreportParameter name="INVOICEMAS_ID">
-						<subreportParameterExpression><![CDATA[$P{INVOICEMAS_ID}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="CONTAINER_NAME">
-						<subreportParameterExpression><![CDATA[$F{containername}]]></subreportParameterExpression>
-					</subreportParameter>
-					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression><![CDATA["Invoice_Subreport2.jasper"]]></subreportExpression>
-				</subreport>
-			</band>
-		</groupHeader>
 		<groupFooter>
 			<band height="1">
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				<line>
-					<reportElement x="0" y="0" width="555" height="1" uuid="5dd59542-ce08-4642-87d6-c66b68798f96">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-				</line>
 			</band>
 		</groupFooter>
 	</group>
@@ -322,8 +267,38 @@
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band splitType="Stretch">
-			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField textAdjust="StretchHeight" pattern="#,###,###0">
+				<reportElement style="Default" x="252" y="0" width="64" height="15" uuid="bebc2ef7-b16c-4937-9da6-009ba108f5f2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" markup="none"/>
+				<textFieldExpression><![CDATA[$F{itemorder}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="Default" x="319" y="0" width="33" height="15" uuid="1de89882-c845-48d6-813e-ec426cbae8ec">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA[$F{itemunit}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="Default" isPrintRepeatedValues="false" x="2" y="0" width="248" height="15" uuid="ad08467b-9ddf-4277-80fa-5baec6abc2cc">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA[$F{itemname} + " / " + $F{shipname}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<summary>

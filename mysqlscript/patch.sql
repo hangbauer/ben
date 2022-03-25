@@ -529,3 +529,37 @@ BEGIN
     ;
 END$$
 DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS `sprRptInvoiceDtl`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sprRptInvoiceDtl`(IN intInvoiceMasId INT,IN strContainerName VARCHAR(50))
+BEGIN
+	SELECT
+		mas.id, mas.invoiceno, mas.senderid, mas.recipientid, mas.invoicedate, mas.duedate, 
+        mas.ppnpercent, mas.bankid, mas.invoicetypeid, mas.note, mas.status, mas.amount, mas.paidamount, mas.ppnamount, mas.insurance,
+        mas.quarantine,
+        dtl.id AS dtlid, dtl.domasid, dtl.amount AS dtlamount, dtl.note AS dtlnote,        
+        domas.receiptno, domas.dodate, domas.containername, domas.seal, domas.note AS domasnote, con.name as conname,
+        dodtl.itemname, dodtl.itemorder, dodtl.itemunit, dodtl.volume, dodtl.note AS dodtlnote,
+        ship.name AS shipname, shipsc.departdate, shipsc.id AS shipscid, shipsc.destination, shipsc.depart,
+        rec.name AS recname, rec.address AS recaddress,
+        sender.name AS sendername, sender.address AS senderaddress, 
+        bank.name AS bankname, bank.accountname, bank.accountno
+	FROM invoicemas mas 
+    INNER JOIN invoicedtl dtl ON dtl.invoicemasid = mas.id
+    INNER JOIN domas ON domas.id = dtl.domasid
+	INNER JOIN containertype con ON con.id = domas.containertypeid
+    INNER JOIN dodtl ON dodtl.domasid = domas.id
+    INNER JOIN shipschedule shipsc ON shipsc.id = domas.shipscheduleid 
+    INNER JOIN ship ON ship.id = shipsc.shipid
+    INNER JOIN recipient rec ON rec.id = domas.recipientid
+    INNER JOIN sender ON sender.id = domas.senderid
+    INNER JOIN bank ON bank.id = mas.bankid
+    WHERE 
+		(0 = intInvoiceMasId OR mas.id = intInvoiceMasId)      
+        AND domas.containername = strContainerName
+	ORDER BY mas.id 
+    ;
+END$$
+DELIMITER ;

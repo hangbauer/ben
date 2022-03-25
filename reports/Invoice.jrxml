@@ -279,21 +279,21 @@
 					<subreportExpression><![CDATA["Invoice_Subreport.jasper"]]></subreportExpression>
 				</subreport>
 				<line>
-					<reportElement x="0" y="0" width="1" height="382" uuid="80b1521d-8fb6-4e41-b881-63ef93643f8d">
+					<reportElement stretchType="ContainerHeight" x="0" y="0" width="1" height="382" uuid="80b1521d-8fb6-4e41-b881-63ef93643f8d">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 				</line>
 				<line>
-					<reportElement x="554" y="0" width="1" height="382" uuid="c8cf8a59-189c-4266-abfa-682ab4e673d7">
+					<reportElement stretchType="ContainerHeight" x="554" y="0" width="1" height="382" uuid="c8cf8a59-189c-4266-abfa-682ab4e673d7">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 				</line>
 				<line>
-					<reportElement x="352" y="0" width="1" height="382" uuid="09886c47-cb74-4b69-af9a-33231f86f6d3">
+					<reportElement stretchType="ContainerHeight" x="352" y="0" width="1" height="382" uuid="09886c47-cb74-4b69-af9a-33231f86f6d3">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -301,7 +301,23 @@
 					</reportElement>
 				</line>
 				<line>
-					<reportElement x="453" y="0" width="1" height="382" uuid="5f2197d7-bfc3-4ee8-a4c3-73f7d5f4de03">
+					<reportElement stretchType="ContainerHeight" x="453" y="0" width="1" height="382" uuid="5f2197d7-bfc3-4ee8-a4c3-73f7d5f4de03">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement stretchType="ContainerHeight" x="78" y="0" width="1" height="382" uuid="020b70d7-8119-4c49-bf9e-f4430756d09a">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement stretchType="ContainerHeight" x="98" y="0" width="1" height="382" uuid="d1e29d14-85b0-427c-8303-37b3ec5652f4">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -488,7 +504,7 @@
 		<band height="17" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement x="1" y="1" width="351" height="15" uuid="cba4168b-61d1-4082-84b8-4d0f598cf1f8">
+				<reportElement x="99" y="1" width="253" height="15" uuid="cba4168b-61d1-4082-84b8-4d0f598cf1f8">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -513,7 +529,7 @@
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Jumlah Rp.]]></text>
+				<text><![CDATA[Harga]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="0" width="555" height="1" uuid="2e9ffb13-239e-40f7-a4b5-400439b2402d">
@@ -556,6 +572,24 @@
 			</line>
 			<line>
 				<reportElement x="554" y="0" width="1" height="16" uuid="359d7242-9dbd-463e-9f42-0c145587c09c">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="2" y="1" width="96" height="15" uuid="b83b4545-6a99-4387-b474-d9336eb0f85e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Container]]></text>
+			</staticText>
+			<line>
+				<reportElement x="98" y="0" width="1" height="16" uuid="da12e23f-2a2d-47b2-b823-f0cb01b522b4">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -759,6 +793,7 @@ A/C Nomor	: 1805937588]]></text>
 			<textField textAdjust="StretchHeight">
 				<reportElement style="Default" x="61" y="124" width="295" height="15" uuid="09ec6022-0b34-4228-b11c-cf18a1441bb0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
 				</reportElement>
 				<textElement markup="none"/>
 				<textFieldExpression><![CDATA[$P{TERBILANG}]]></textFieldExpression>
@@ -795,6 +830,7 @@ A/C Nomor	: 1805937588]]></text>
 			<textField textAdjust="StretchHeight">
 				<reportElement style="Default" x="353" y="17" width="100" height="15" uuid="f0dc17ad-043a-4960-8776-8b9e94746b21">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
 				</reportElement>
 				<textElement markup="none"/>
 				<textFieldExpression><![CDATA["PPN " + IF($F{ppnpercent}.equals(0),"",IF($F{ppnpercent}.equals(1),"1%","10%"))]]></textFieldExpression>
