@@ -39,9 +39,9 @@
             }
         @endif
 
-        @page { size: 241.3mm 139.7mm } /* output size */
+        @page { size: 241.3mm 139.5mm } /* output size */
         /*body.receipt .sheet { width: 241.3mm; height: 139.7mm } /* sheet size */
-        .sheet { width: 241.3mm; height: 139.7mm } /* sheet size */
+        .sheet { width: 241.3mm; height: 139.5mm } /* sheet size */
         @media print { .sheet { width: 241.3mm };} /* fix for Chrome */
     </style>
   </head>

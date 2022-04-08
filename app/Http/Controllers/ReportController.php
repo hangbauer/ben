@@ -121,9 +121,10 @@ class ReportController extends Controller
         //require_once __DIR__ . '/vendor/autoload.php';
         // Create an instance of the class:
         $mpdf = new \Mpdf\Mpdf([
-            'format' => [215.9, 139.7],
+            // 'format' => [215.9, 139.7],
+            'format' => [241.3,279.4],
             'margin_top' => 5,
-            'margin_bottom' => 5,
+            'margin_bottom' => 5            
             ]);
 
         // Write some HTML code:

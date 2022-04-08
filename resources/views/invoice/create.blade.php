@@ -189,7 +189,7 @@
               </tr>
               <tr>
                 <td>PPN</td>
-                <td><input type="text" class="form-control text-right autonumeric ppnpercent" name="ppnpercent" value="{{ isset($invoice['invoiceMas']) ? $invoice['invoiceMas'][0]->ppnpercent : '0'}}"></td>
+                <td><input type="text" class="form-control text-right autonumericdec ppnpercent" name="ppnpercent" value="{{ isset($invoice['invoiceMas']) ? $invoice['invoiceMas'][0]->ppnpercent : '0'}}"></td>
                 <td><input type="text" class="form-control text-right autonumeric ppn" name="ppn" value="0" readonly></td>
                 <td></td>
               </tr>
@@ -395,6 +395,7 @@
         });
 
         $('.autonumeric').autoNumeric({mDec:0});
+        $('.autonumericdec').autoNumeric({mDec:2});        
 
         calculate();
         setLock();
