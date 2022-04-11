@@ -297,7 +297,7 @@
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
 				<textElement markup="none"/>
-				<textFieldExpression><![CDATA[$F{itemname} + " / " + $F{shipname}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{itemname} ]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

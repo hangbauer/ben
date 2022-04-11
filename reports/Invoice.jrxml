@@ -279,29 +279,21 @@
 					<subreportExpression><![CDATA["Invoice_Subreport.jasper"]]></subreportExpression>
 				</subreport>
 				<line>
-					<reportElement stretchType="ContainerHeight" x="0" y="0" width="1" height="382" uuid="80b1521d-8fb6-4e41-b881-63ef93643f8d">
+					<reportElement stretchType="ContainerHeight" x="0" y="0" width="1" height="382" isPrintWhenDetailOverflows="true" uuid="80b1521d-8fb6-4e41-b881-63ef93643f8d">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 				</line>
 				<line>
-					<reportElement stretchType="ContainerHeight" x="554" y="0" width="1" height="382" uuid="c8cf8a59-189c-4266-abfa-682ab4e673d7">
+					<reportElement stretchType="ContainerHeight" x="554" y="0" width="1" height="382" isPrintWhenDetailOverflows="true" uuid="c8cf8a59-189c-4266-abfa-682ab4e673d7">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 				</line>
 				<line>
-					<reportElement stretchType="ContainerHeight" x="352" y="0" width="1" height="382" uuid="09886c47-cb74-4b69-af9a-33231f86f6d3">
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					</reportElement>
-				</line>
-				<line>
-					<reportElement stretchType="ContainerHeight" x="453" y="0" width="1" height="382" uuid="5f2197d7-bfc3-4ee8-a4c3-73f7d5f4de03">
+					<reportElement stretchType="ContainerHeight" x="352" y="0" width="1" height="382" isPrintWhenDetailOverflows="true" uuid="09886c47-cb74-4b69-af9a-33231f86f6d3">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -309,7 +301,7 @@
 					</reportElement>
 				</line>
 				<line>
-					<reportElement stretchType="ContainerHeight" x="78" y="0" width="1" height="382" uuid="020b70d7-8119-4c49-bf9e-f4430756d09a">
+					<reportElement stretchType="ContainerHeight" x="453" y="0" width="1" height="382" isPrintWhenDetailOverflows="true" uuid="5f2197d7-bfc3-4ee8-a4c3-73f7d5f4de03">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -317,7 +309,15 @@
 					</reportElement>
 				</line>
 				<line>
-					<reportElement stretchType="ContainerHeight" x="98" y="0" width="1" height="382" uuid="d1e29d14-85b0-427c-8303-37b3ec5652f4">
+					<reportElement stretchType="ContainerHeight" x="78" y="0" width="1" height="382" isPrintWhenDetailOverflows="true" uuid="020b70d7-8119-4c49-bf9e-f4430756d09a">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement stretchType="ContainerHeight" x="98" y="0" width="1" height="382" isPrintWhenDetailOverflows="true" uuid="d1e29d14-85b0-427c-8303-37b3ec5652f4">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -484,11 +484,11 @@
 				<text><![CDATA[INVOICE]]></text>
 			</staticText>
 			<textField textAdjust="StretchHeight">
-				<reportElement style="Default" x="0" y="124" width="555" height="15" uuid="8c7d9631-5a51-40a1-8e48-c61f235964db">
+				<reportElement key="" style="Default" x="0" y="124" width="555" height="15" uuid="8c7d9631-5a51-40a1-8e48-c61f235964db">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" markup="none">
-					<font isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{invoiceno}]]></textFieldExpression>
 			</textField>
