@@ -617,16 +617,6 @@
 				<text><![CDATA[Terbilang :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="176" width="280" height="50" uuid="6f36aabe-1a51-407a-86b5-e85cc5848403">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
-				</reportElement>
-				<text><![CDATA[Bank Transfer:
-PANIN
-A/C Nama	: PT BINA ERA NUSANTARA
-A/C Nomor	: 1805937588]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="400" y="124" width="35" height="15" uuid="4bca98b9-82f6-464e-9895-0840f31593f3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -835,6 +825,62 @@ A/C Nomor	: 1805937588]]></text>
 				<textElement markup="none"/>
 				<textFieldExpression><![CDATA["PPN " + IF($F{ppnpercent}.equals(0),"",IF($F{ppnpercent}.equals(1),"1%","10%"))]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="110" y="199" width="180" height="15" uuid="b2c5e78f-1330-4129-99be-459ab7a0215e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{accountname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="214" width="180" height="15" uuid="52912952-d87c-4853-b3b1-e42d6eeed7e7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{accountno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="169" width="100" height="15" uuid="ec4fec92-2568-46ba-9ccc-5404c339c6a0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
+				</reportElement>
+				<text><![CDATA[Bank Transfer:]]></text>
+			</staticText>
+			<textField>
+				<reportElement key="" x="0" y="184" width="100" height="15" uuid="20fd3c65-3685-4e7d-b910-4158588036f0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{bankname}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="199" width="100" height="15" uuid="2fb20ab0-19aa-4b1d-a4f7-c678012abde8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
+				</reportElement>
+				<text><![CDATA[A/C Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="214" width="100" height="15" uuid="6ce4d7e8-ffa7-41c1-b259-9f5b0f0ae685">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
+				</reportElement>
+				<text><![CDATA[A/C Nomor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="199" width="10" height="15" uuid="9df5d3c7-97ff-42e2-9ed5-ff5bc1cae4b9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
+				</reportElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="214" width="10" height="15" uuid="b4b99017-4c46-493e-86d3-40956dbb3ec3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
+				</reportElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
 	<summary>
