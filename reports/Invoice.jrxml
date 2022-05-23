@@ -415,12 +415,12 @@
 				</reportElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
-			<textField textAdjust="StretchHeight" pattern="dd MMM yyyy">
+			<textField textAdjust="StretchHeight" pattern="dd/MM/yyyy">
 				<reportElement style="Default" x="105" y="54" width="170" height="15" uuid="c53b6584-c27e-448f-b1ac-648114cde33e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement markup="none"/>
-				<textFieldExpression><![CDATA[$F{departdate}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse($F{departdate})]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight">
 				<reportElement style="Default" x="105" y="71" width="170" height="15" uuid="680658fa-7d7b-4fce-a8e8-ffc303a08b87">
@@ -470,7 +470,7 @@
 				<text><![CDATA[Alamat]]></text>
 			</staticText>
 			<textField textAdjust="StretchHeight">
-				<reportElement style="Default" x="385" y="52" width="170" height="15" uuid="dd663974-7433-4b49-bc07-536d494de130">
+				<reportElement style="Default" x="385" y="52" width="170" height="72" uuid="dd663974-7433-4b49-bc07-536d494de130">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement markup="none"/>
