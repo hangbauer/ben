@@ -26,7 +26,7 @@ class Invoice {
                 $invoiceDtl[] = array(
                     'domasid'       => $request->domasid[$i],
                     'amount'        => (float)str_replace(",", "", $request->amount[$i]),
-                    'note'          => $request->note[$i],                
+                    // 'note'          => $request->note[$i],
                     'created_at'    => Date('Y-m-d h:i:s'),
                     'updated_at'    => Date('Y-m-d h:i:s'),                    
                     'created_by'    => $userid,
@@ -42,7 +42,7 @@ class Invoice {
                     'id'            => $request->invoicedtlid[$i],
                     'domasid'       => $request->domasid[$i],
                     'amount'        => (float)str_replace(",", "", $request->amount[$i]),
-                    'note'          => $request->note[$i],                
+                    // 'note'          => $request->note[$i],
                     'updated_at'    => Date('Y-m-d h:i:s'),                    
                     'updated_by'    => $userid,
                     'branchid'      => $branchid
