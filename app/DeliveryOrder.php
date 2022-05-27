@@ -248,14 +248,27 @@ class DeliveryOrder {
 
     public static function searchListInv($request){
         if($request->invoicetypeid == '0'){
+            // $sql = "SELECT mas.*,con.name AS conname,rec.name AS recname
+            //     FROM domas mas 
+            //     JOIN containertype con ON mas.containertypeid = con.id 
+            //     JOIN recipient rec ON mas.recipientid = rec.id
+            //     JOIN shipschedule sch ON sch.id = mas.shipscheduleid
+            //     LEFT JOIN invoicedtl dtl ON dtl.domasid = mas.id
+            //     WHERE IFNULL(mas.shipscheduleid,'') <> ''
+            //     AND IFNULL(dtl.domasid,'') = ''
+            //     AND mas.senderid = ?
+            //     AND sch.shipid = ?
+            //     AND sch.departdate = ?
+            //     "
+            //     ;
+            
             $sql = "SELECT mas.*,con.name AS conname,rec.name AS recname
                 FROM domas mas 
                 JOIN containertype con ON mas.containertypeid = con.id 
                 JOIN recipient rec ON mas.recipientid = rec.id
                 JOIN shipschedule sch ON sch.id = mas.shipscheduleid
                 LEFT JOIN invoicedtl dtl ON dtl.domasid = mas.id
-                WHERE IFNULL(mas.shipscheduleid,'') <> ''
-                AND IFNULL(dtl.domasid,'') = ''
+                WHERE IFNULL(mas.shipscheduleid,'') <> ''                
                 AND mas.senderid = ?
                 AND sch.shipid = ?
                 AND sch.departdate = ?
@@ -264,14 +277,27 @@ class DeliveryOrder {
 
             $listDeliveryOrder = DB::select($sql, array($request->senderid, $request->shipid, $request->departdate));
         }else{
+            // $sql = "SELECT mas.*,con.name AS conname,rec.name AS recname
+            //     FROM domas mas 
+            //     JOIN containertype con ON mas.containertypeid = con.id 
+            //     JOIN recipient rec ON mas.recipientid = rec.id
+            //     JOIN shipschedule sch ON sch.id = mas.shipscheduleid
+            //     LEFT JOIN invoicedtl dtl ON dtl.domasid = mas.id
+            //     WHERE IFNULL(mas.shipscheduleid,'') <> ''
+            //     AND IFNULL(dtl.domasid,'') = ''
+            //     AND mas.recipientid = ?
+            //     AND sch.shipid = ?
+            //     AND sch.departdate = ?
+            //     "
+            //     ;
+
             $sql = "SELECT mas.*,con.name AS conname,rec.name AS recname
                 FROM domas mas 
                 JOIN containertype con ON mas.containertypeid = con.id 
                 JOIN recipient rec ON mas.recipientid = rec.id
                 JOIN shipschedule sch ON sch.id = mas.shipscheduleid
                 LEFT JOIN invoicedtl dtl ON dtl.domasid = mas.id
-                WHERE IFNULL(mas.shipscheduleid,'') <> ''
-                AND IFNULL(dtl.domasid,'') = ''
+                WHERE IFNULL(mas.shipscheduleid,'') <> ''                
                 AND mas.recipientid = ?
                 AND sch.shipid = ?
                 AND sch.departdate = ?
@@ -357,6 +383,24 @@ class DeliveryOrder {
         DB::table('domas')
             ->where('id', $id)
             ->delete();
+    }
+
+    public static function updateSplit($request){
+        for($i = 0; $i < count($request['subdtl-id']); $i++){
+            if($request['subdtl-id'][$i] != '0'){
+                $sql = "UPDATE dodtl 
+                    SET itemordersender = :itemordersender
+                    WHERE 
+                        domasid = :domasid
+                        AND id = :id
+                    ";
+                DB::update($sql, array(
+                    'itemordersender' => $request['subdtl-itemordersender'][$i],
+                    'domasid' => $request['subdtl-domasid'][$i],
+                    'id' => $request['subdtl-id'][$i],
+                ));
+            }
+        }        
     }
 
 }

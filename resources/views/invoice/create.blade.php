@@ -164,7 +164,10 @@
                   <td>{{ $dtl->conname }}</td>
                   <td>{{ $dtl->recname }}</td>
                   <td><input type="text" class="form-control text-right autonumeric amount" name="amount[]" value="{{ $dtl->amount }}"></td>
-                  <td><button type="button" class="btn btn-block btn-danger btnDelete"><i class="fa fa-fw fa-close"></i></button></td>
+                  <td>
+                    <button type="button" class="btn btn-sm btn-primary btnDtl"><i class="fa fa-fw fa-edit"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger btnDelete"><i class="fa fa-fw fa-close"></i></button>
+                  </td>
                 </tr>
               @endforeach
             @endif
@@ -273,6 +276,45 @@
   </div>
   <!-- /.modal -->
 
+  <div class="modal fade" id="modal-detail">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Nama & Jumlah Barang</h4>
+        </div>
+        <div class="modal-body" style="height: 400px; overflow-y: scroll;">
+          <div class="overlay" style="display: none;">
+            <i class="fa fa-refresh fa-spin"></i>
+          </div>
+          <form id="form-detail">      
+          {!! csrf_field() !!}     
+          <table class="table table-condensed" id="table-modal-detail">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nama Barang</th>
+                <th>Total Barang</th>
+                <th>Split</th>
+              </tr>
+            </thead>                             
+              <tbody>
+              </tbody>            
+          </table>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
+          <button type="button" class="btn btn-primary" id="btnSaveDetail">Simpan</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
 @endsection
 
 @section('scripts')
@@ -300,6 +342,21 @@
       $('#btnSave').on('click', function(){
         $('#modal-default').modal('hide');
         saveToTableDetail();
+      });
+
+      $('.btnDtl').on('click', function(){
+        $('#modal-detail').modal('show');
+        
+        var domasid = $(this).closest('tr').find('.domasid').val();
+        console.log(domasid);
+        searchDetail(domasid);
+      });
+
+      $('#btnSaveDetail').on('click', function(){
+        $('#modal-detail').modal('hide');
+
+        var form = $("#form-detail").serialize();
+        saveToDODetail(form);
       });
 
       $('#table-detail').on('click', '.btnDelete', function(){
@@ -481,7 +538,7 @@
           html += '<td>' + conname + '</td>';
           html += '<td>' + recname + '</td>';
           html += '<td>' + '<input type="text" class="form-control text-right autonumeric amount" name="amount[]" value="0">' + '</td>';
-          html += '<td><button type="button" class="btn btn-block btn-danger btnDelete"><i class="fa fa-fw fa-close"></i></button></td>';
+          html += '<td><button type="button" class="btn btn-sm btn-primary btnDtl"><i class="fa fa-fw fa-edit"></i></button><button type="button" class="btn btn-sm btn-danger btnDelete"><i class="fa fa-fw fa-close"></i></button></td>';
           html += '</tr>';
 
           $('#table-detail').find('tbody').append(html);
@@ -553,6 +610,83 @@
         });
       }
 
+    }
+
+    function searchDetail(domasid){
+      var req = $.ajax({
+          type: "POST",
+          url: "{{ url('deliveryorder/search-list-dtl') }}",
+          data: {
+            _token: $('input[name=_token]').val(),
+            domasid: domasid,            
+          },
+          dataType: "JSON",
+          beforeSend: function( xhr ) {
+              $('.overlay').show();
+          }
+      });
+
+      req.done(function(data){
+        $('.overlay').hide();
+        // $('.result').find('.box-body').html(data);
+        console.log(data);
+        setTableModalDtl(data);
+      });
+
+      req.fail(function(jqXHR, textStatus){
+          $('.overlay').hide();
+          alert( "Error" );
+      });
+    }
+
+    function setTableModalDtl(data){
+      var invtype = $('select[name=invoicetypeid]').val();
+
+      var html = '';
+      for(var i = 0; i < data.length; i++){
+        // console.log(data[i].id);
+        
+        html += '<tr data-id="' + data[i].id + '">';
+        html += '<td><input type="hidden" class="subdtlid" name="subdtl-id[]" value="' + data[i].id + '"><input type="hidden" class="invoicetypeid" name="subdtl-invoicetypeid[]" value="' + invtype + '"><input type="hidden" class="subdtl-domasid" name="subdtl-domasid[]" value="' + data[i].domasid + '"></td>';
+        html += '<td>' + data[i].itemname + '</td>';
+        html += '<td>' + data[i].itemorder + '</td>';
+        if(invtype == '0'){
+          html += '<td><input type="text" class="itemordersender" name="subdtl-itemordersender[]" value="' + data[i].itemordersender + '"></td>';
+        }else{
+          html += '<td><input type="text" class="itemorderrecipient" name="subdtl-itemorderrecipient[]" value="' + data[i].itemorderrecipient + '"></td>';
+        }        
+        html += '</tr>';
+        
+      }
+
+      $('#table-modal-detail').find('tbody').html(html);
+    }
+
+    function saveToDODetail(form){
+      var req = $.ajax({
+          type: "POST",
+          url: "{{ url('deliveryorder/update-split') }}",
+          // data: {
+          //   _token: $('input[name=_token]').val(),
+          //   domasid: domasid,            
+          // },
+          data: form,
+          dataType: "JSON",
+          beforeSend: function( xhr ) {
+              $('.overlay').show();
+          }
+      });
+
+      req.done(function(data){
+        $('.overlay').hide();
+        // $('.result').find('.box-body').html(data);
+        console.log(data);        
+      });
+
+      req.fail(function(jqXHR, textStatus){
+          $('.overlay').hide();
+          alert( "Error" );
+      });
     }
 
   </script>

@@ -106,6 +106,12 @@
 		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="quarantine" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="quarantine"/>
+		<property name="com.jaspersoft.studio.field.label" value="quarantine"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="dtlid" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
 		<property name="com.jaspersoft.studio.field.label" value="dtlid"/>
@@ -195,7 +201,7 @@
 		<property name="com.jaspersoft.studio.field.label" value="shipname"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="ship"/>
 	</field>
-	<field name="departdate" class="java.sql.Date">
+	<field name="departdate" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="departdate"/>
 		<property name="com.jaspersoft.studio.field.label" value="departdate"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="shipschedule"/>
@@ -255,6 +261,10 @@
 		<property name="com.jaspersoft.studio.field.tree.path" value="bank"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="itemorder2" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="itemorder2"/>
+		<property name="com.jaspersoft.studio.field.label" value="itemorder2"/>
+	</field>
 	<group name="Group1">
 		<groupExpression><![CDATA[$F{containername}]]></groupExpression>
 		<groupFooter>
@@ -277,7 +287,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right" markup="none"/>
-				<textFieldExpression><![CDATA[$F{itemorder}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{itemorder2}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight">
 				<reportElement style="Default" x="319" y="0" width="33" height="15" uuid="1de89882-c845-48d6-813e-ec426cbae8ec">
@@ -297,7 +307,7 @@
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
 				<textElement markup="none"/>
-				<textFieldExpression><![CDATA[$F{itemname} ]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{itemname}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

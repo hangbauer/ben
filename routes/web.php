@@ -24,6 +24,8 @@ Route::resource('deliveryorder', 'DeliveryOrderController');
 Route::post('deliveryorder/search-list', 'DeliveryOrderController@searchList');
 Route::post('deliveryorder/search-list-inv', 'DeliveryOrderController@searchListInv');
 Route::post('deliveryorder/search-table-list', 'DeliveryOrderController@searchTableList');
+Route::post('deliveryorder/search-list-dtl', 'DeliveryOrderController@searchListDoDtl');
+Route::post('deliveryorder/update-split', 'DeliveryOrderController@updateSplit');
 
 Route::resource('shipschedule', 'ShipScheduleController');
 Route::post('shipschedule/search-table-list', 'ShipScheduleController@searchTableList');

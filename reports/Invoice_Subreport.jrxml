@@ -279,7 +279,7 @@
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement markup="none"/>
-					<textFieldExpression><![CDATA[$F{conname}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[IF($F{conname}.equals("Kombo"),"C",$F{conname})]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" pattern="#,###,##0">
 					<reportElement style="Default" x="454" y="2" width="98" height="15" uuid="42f7e260-539e-45a6-a5a2-ecc00ea02191">

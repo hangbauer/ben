@@ -201,4 +201,19 @@ class DeliveryOrderController extends Controller
             ->with('listDeliveryOrder', $listDeliveryOrder)
             ;
     }
+
+    public function searchListDoDtl(Request $request){
+        $listDeliveryOrder = DeliveryOrder::getDoDtlByDoMasID($request->domasid);
+
+        return json_encode($listDeliveryOrder)
+            ;
+    }
+
+    public function updateSplit(Request $request)
+    {    
+        
+        DeliveryOrder::updateSplit($request);
+        
+        return json_encode('ok');
+    }
 }

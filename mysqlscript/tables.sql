@@ -161,6 +161,8 @@ CREATE TABLE `dodtl` (
   `domasid` int(11) DEFAULT NULL,
   `itemname` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `itemorder` decimal(20,2) DEFAULT '0.00',
+  `itemordersender` decimal(20,2) DEFAULT '0.00',
+  `itemorderrecipient` decimal(20,2) DEFAULT '0.00',
   `itemunit` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `volume` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `note` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,  
