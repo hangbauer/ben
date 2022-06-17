@@ -150,7 +150,7 @@ BEGIN
 	SELECT 
 		ship.name AS shipname, shipsc.departdate, shipsc.destination, shipsc.note AS shipscnote, shipsc.voyage, 
 		shipsc.depart,
-        mas.containername, mas.seal, mas.receiptno,
+        mas.containername, mas.seal, mas.receiptno, mas.dodate, 
         rec.name recname,sen.name senname,
         dtl.itemname, dtl.itemorder, dtl.itemunit, dtl.volume, dtl.note AS dtlnote
     FROM domas mas

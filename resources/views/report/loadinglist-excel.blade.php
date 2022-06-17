@@ -38,6 +38,7 @@
                 <th>Jumlah</th>
                 <th>Nama Barang</th>
                 <th>Penerima</th>
+                <th>Invoice</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,6 +59,7 @@
                             <td>{{ number_format($dtl->itemorder) }} {{ $dtl->itemunit }}</td>
                             <td>{{ $dtl->itemname }}</td>
                             <td>{{ $show ? $dtl->recname : '' }}</td>
+                            <td>{{ $dtl->invoiceno }}</td>
                         </tr>
                         <?php $tempName = $dtl->containername; $show = true; ?>
                     @endif

@@ -606,3 +606,35 @@ BEGIN
     ;
 END$$
 DELIMITER ;
+
+
+
+#############################################################################################
+
+DROP PROCEDURE IF EXISTS `sprRptItem`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sprRptItem`(IN intShipId INT, IN intIsShip INT, IN containerName VARCHAR(50), IN intRecId INT, IN intSendId INT, IN dateFrom VARCHAR(10), IN dateTo VARCHAR(10))
+BEGIN
+	SELECT 
+		ship.name AS shipname, shipsc.departdate, shipsc.destination, shipsc.note AS shipscnote, shipsc.voyage, 
+		shipsc.depart,
+        mas.containername, mas.seal, mas.receiptno, mas.dodate, 
+        rec.name recname,sen.name senname,
+        dtl.itemname, dtl.itemorder, dtl.itemunit, dtl.volume, dtl.note AS dtlnote
+    FROM domas mas
+    INNER JOIN dodtl dtl ON dtl.domasid = mas.id 
+    INNER JOIN recipient rec ON rec.id = mas.recipientid 
+    INNER JOIN sender sen ON sen.id = mas.senderid
+    LEFT OUTER JOIN shipschedule shipsc ON mas.shipscheduleid = shipsc.id 
+    LEFT OUTER JOIN ship ON shipsc.shipid = ship.id     
+    WHERE 
+		(shipsc.departdate BETWEEN dateFrom AND dateTo) 
+        AND (0 = intShipId OR shipsc.shipid = intShipId) 
+        AND ((0 = intIsShip AND shipsc.id IS NULL) OR (1 = intIsShip AND shipsc.id IS NOT NULL )) 
+        AND (0 = intRecId OR mas.recipientid = intRecId) 
+        AND (0 = intSendId OR mas.senderid = intSendId) 
+        
+	ORDER BY ship.name, departdate, mas.containername
+    ;
+END$$
+DELIMITER ;

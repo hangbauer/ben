@@ -74,6 +74,12 @@
 		<property name="com.jaspersoft.studio.field.tree.path" value="domas"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="dodate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="dodate"/>
+		<property name="com.jaspersoft.studio.field.label" value="dodate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="domas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="recname" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
 		<property name="com.jaspersoft.studio.field.label" value="recname"/>
@@ -273,7 +279,7 @@
 					</reportElement>
 				</line>
 				<staticText>
-					<reportElement x="2" y="23" width="88" height="15" uuid="e2454e47-c623-4145-8aa5-a911321c8835">
+					<reportElement x="2" y="23" width="68" height="15" uuid="e2454e47-c623-4145-8aa5-a911321c8835">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Left">
@@ -282,7 +288,7 @@
 					<text><![CDATA[Tanda Terima]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="100" y="23" width="289" height="15" uuid="3c29b073-50f0-4e69-929b-f08c6c817826">
+					<reportElement x="165" y="23" width="249" height="15" uuid="3c29b073-50f0-4e69-929b-f08c6c817826">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Left">
@@ -309,14 +315,14 @@
 					<text><![CDATA[Nama Barang]]></text>
 				</staticText>
 				<line>
-					<reportElement x="96" y="22" width="1" height="16" uuid="01caef86-633a-497a-829e-afc89a171f5e">
+					<reportElement x="162" y="22" width="1" height="16" uuid="01caef86-633a-497a-829e-afc89a171f5e">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 				</line>
 				<line>
-					<reportElement x="400" y="22" width="1" height="16" uuid="1c3f9ca1-2645-4176-a798-0f90c75ac825">
+					<reportElement x="419" y="22" width="1" height="16" uuid="1c3f9ca1-2645-4176-a798-0f90c75ac825">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -337,7 +343,7 @@
 					</reportElement>
 				</line>
 				<staticText>
-					<reportElement x="402" y="23" width="289" height="15" uuid="cd86bf43-34c2-4d55-9e4e-36afa740c58f">
+					<reportElement x="430" y="23" width="271" height="15" uuid="cd86bf43-34c2-4d55-9e4e-36afa740c58f">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Left">
@@ -347,6 +353,22 @@
 				</staticText>
 				<line>
 					<reportElement x="710" y="22" width="1" height="16" uuid="8a0701b4-0abd-413b-a760-593567d42e00">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement x="89" y="23" width="68" height="15" uuid="baaca4bd-ca01-474c-93d3-8661c859c148">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tanggal]]></text>
+				</staticText>
+				<line>
+					<reportElement x="80" y="22" width="1" height="16" uuid="0e3f0e62-abac-4ee4-ada9-3f12f8e47741">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -427,21 +449,21 @@
 				</reportElement>
 			</line>
 			<textField>
-				<reportElement x="2" y="1" width="88" height="15" uuid="cd321d13-e3c2-45d3-9601-84b95eeceafd"/>
+				<reportElement x="2" y="1" width="68" height="15" uuid="cd321d13-e3c2-45d3-9601-84b95eeceafd"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{receiptno}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="96" y="0" width="1" height="17" uuid="28435bf1-cee2-4f57-a5b0-a03fe2dd9d00">
+				<reportElement x="162" y="0" width="1" height="17" uuid="28435bf1-cee2-4f57-a5b0-a03fe2dd9d00">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 			</line>
 			<textField>
-				<reportElement x="100" y="1" width="289" height="15" uuid="fb4287db-bf83-4373-af0f-2bc150a2fa31"/>
+				<reportElement x="165" y="1" width="249" height="15" uuid="fb4287db-bf83-4373-af0f-2bc150a2fa31"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
@@ -469,14 +491,14 @@
 				<textFieldExpression><![CDATA[$F{itemname}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="400" y="0" width="1" height="17" uuid="d4220e5a-925b-45de-a50a-18d7db5fa518">
+				<reportElement x="419" y="0" width="1" height="17" uuid="d4220e5a-925b-45de-a50a-18d7db5fa518">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 			</line>
 			<textField>
-				<reportElement x="402" y="1" width="289" height="15" uuid="2e6f5583-ff8b-48fb-86cd-f5358a163574"/>
+				<reportElement x="430" y="1" width="271" height="15" uuid="2e6f5583-ff8b-48fb-86cd-f5358a163574"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
@@ -487,6 +509,20 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="89" y="1" width="68" height="15" uuid="1828e587-ef5b-4493-ad31-281dd39930ea"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dodate}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="80" y="0" width="1" height="17" uuid="82440a86-6595-47b3-ae22-52ec75a69186">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 			</line>
