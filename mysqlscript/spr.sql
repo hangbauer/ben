@@ -217,7 +217,8 @@ BEGIN
         ship.name AS shipname, shipsc.departdate, shipsc.id AS shipscid, shipsc.destination, shipsc.depart,
         rec.name AS recname, rec.address AS recaddress,
         sender.name AS sendername, sender.address AS senderaddress, 
-        bank.name AS bankname, bank.accountname, bank.accountno
+        bank.name AS bankname, bank.accountname, bank.accountno,
+        case when mas.invoicetypeid = 0 and dodtl.itemordersender > 0 then dodtl.itemordersender when mas.invoicetypeid = 1 and dodtl.itemorderrecipient > 0 then dodtl.itemorderrecipient else dodtl.itemorder end itemorder2
 	FROM invoicemas mas 
     INNER JOIN invoicedtl dtl ON dtl.invoicemasid = mas.id
     INNER JOIN domas ON domas.id = dtl.domasid
@@ -235,3 +236,4 @@ BEGIN
     ;
 END$$
 DELIMITER ;
+
