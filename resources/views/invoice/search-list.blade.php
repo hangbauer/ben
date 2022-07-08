@@ -18,7 +18,7 @@
 				<td>{{ $table->invoicetypeid == 0 ? $table->sendername : $table->recipientname }}</td>
 				<td>{{ $table->note }}</td>						
 				<td>
-					<a href="{{ url('invoice/'.$table->id.'/edit') }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Ubah</a>
+					<a target="_blank" href="{{ url('invoice/'.$table->id.'/edit') }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Ubah</a>
 					<a target="_blank" href="{{ url('report/invoice-jasper?reporttypeid=1&invoicemasid='.$table->id) }}" class="btn btn-xs btn-default"><i class="fa fa-print"></i> Print</a>
 				</td>
 			</tr>

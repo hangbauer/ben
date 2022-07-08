@@ -49,13 +49,14 @@ class ReportController extends Controller
     }
 
     public function loadingListExcel(Request $request)
-    {
+    {        
     	$data = Report::getLoadingListData($request, $this->userid, $this->branchid);
-
+                
     	switch ($request->reporttypeid) {
     		case '1': //html
     			return view('report.loadinglist-excel')
     				->with('data', $data)
+                    ->with('showinv', $request->showinv)
     				;
     			break;
 

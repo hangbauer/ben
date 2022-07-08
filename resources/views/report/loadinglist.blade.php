@@ -24,7 +24,7 @@
 			    </div>
 			    <!-- /.box-header -->
 			    <!-- form start -->
-			    <form role="form" method="POST" id="form-add" action="{{ url('report/loadinglist-excel') }}">
+			    <form target="_blank" role="form" method="POST" id="form-add" action="{{ url('report/loadinglist-excel') }}">
 					{!! csrf_field() !!}
 
 					<div class="box-body">
@@ -52,7 +52,13 @@
 										@endforeach
 									</select>
 					            </div>
-					          </div>
+					        </div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="showinv">Munculkan Nomor Invoice</label>
+									<input type="checkbox" class="form-check-input" name="showinv">
+					            </div>
+							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-4">

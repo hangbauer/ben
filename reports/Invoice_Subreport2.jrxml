@@ -316,7 +316,7 @@
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
 				<textElement markup="none"/>
-				<textFieldExpression><![CDATA[$F{itemname}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{itemname} + " " + $F{dodtlnote}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

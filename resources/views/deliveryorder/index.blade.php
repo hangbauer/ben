@@ -3,6 +3,8 @@
 @section('plugins')
   <link rel="stylesheet" href="{{ asset('bower_components/select2/dist/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
     <style>
         .select2-container *:focus {
             border-color: #3c8dbc !important;
@@ -111,7 +113,7 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row table-list">
 		<div class="col-md-12">
 			<div class="box result">
 
@@ -135,6 +137,9 @@
 	<script src="{{ asset('bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 	<script src="{{ asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
 	<script src="{{ asset('bower_components/autonumeric/autoNumeric.js') }}"></script>
+	<!-- DataTables -->
+	<script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 
 	<script>
 	    $(function() {
@@ -183,6 +188,8 @@
 				.removeAttr('disabled');
 
 				$('.box-search').boxWidget('collapse');
+
+				$('.table-list').find('table').DataTable();
 	        });
 
 	        req.fail(function(jqXHR, textStatus){

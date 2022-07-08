@@ -297,6 +297,7 @@
                 <th>Nama Barang</th>
                 <th>Total Barang</th>
                 <th>Split</th>
+                <th>Catatan</th>
               </tr>
             </thead>                             
               <tbody>
@@ -655,6 +656,7 @@
         }else{
           html += '<td><input type="text" class="itemorderrecipient" name="subdtl-itemorderrecipient[]" value="' + data[i].itemorderrecipient + '"></td>';
         }        
+        html += '<td><input type="text" class="note" name="subdtl-note[]" value="' + data[i].note + '"></td>';
         html += '</tr>';
         
       }

@@ -3,10 +3,10 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="9d0446dd-ad64-4b14-96d2-2230cee80eab">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mysql"/>
-	<property name="ireport.jasperserver.url" value="http://localhost:8085/jasperserver/"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8082/jasperserver/"/>
 	<property name="ireport.jasperserver.user" value="jasperadmin"/>
-	<property name="ireport.jasperserver.report.resource" value="/REPORT_BEN/Invoice_files/main_jrxml"/>
-	<property name="ireport.jasperserver.reportUnit" value="/REPORT_BEN/Invoice"/>
+	<property name="ireport.jasperserver.report.resource" value="/Report_BEN/Invoice_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/Report_BEN/Invoice"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>

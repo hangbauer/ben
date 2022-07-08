@@ -385,21 +385,39 @@ class DeliveryOrder {
             ->delete();
     }
 
-    public static function updateSplit($request){
+    public static function updateSplit($request){		
         for($i = 0; $i < count($request['subdtl-id']); $i++){
-            if($request['subdtl-id'][$i] != '0'){
-                $sql = "UPDATE dodtl 
-                    SET itemordersender = :itemordersender
-                    WHERE 
-                        domasid = :domasid
-                        AND id = :id
-                    ";
-                DB::update($sql, array(
-                    'itemordersender' => $request['subdtl-itemordersender'][$i],
-                    'domasid' => $request['subdtl-domasid'][$i],
-                    'id' => $request['subdtl-id'][$i],
-                ));
-            }
+			if($request['subdtl-invoicetypeid'][$i] == '0'){
+				if($request['subdtl-id'][$i] != '0'){
+					$sql = "UPDATE dodtl 
+						SET itemordersender = :itemordersender, note = :note
+						WHERE 
+							domasid = :domasid
+							AND id = :id
+						";
+					DB::update($sql, array(
+						'itemordersender' => $request['subdtl-itemordersender'][$i],
+                        'note' => $request['subdtl-note'][$i],
+						'domasid' => $request['subdtl-domasid'][$i],
+						'id' => $request['subdtl-id'][$i],
+					));
+				}
+			}else{
+				if($request['subdtl-id'][$i] != '0'){
+					$sql = "UPDATE dodtl 
+						SET itemorderrecipient = :itemorderrecipient, note = :note
+						WHERE 
+							domasid = :domasid
+							AND id = :id
+						";
+					DB::update($sql, array(
+						'itemorderrecipient' => $request['subdtl-itemorderrecipient'][$i],
+                        'note' => $request['subdtl-note'][$i],
+						'domasid' => $request['subdtl-domasid'][$i],
+						'id' => $request['subdtl-id'][$i],
+					));
+				}
+			}
         }        
     }
 

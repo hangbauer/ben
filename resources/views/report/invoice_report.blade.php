@@ -24,7 +24,7 @@
 			    </div>
 			    <!-- /.box-header -->
 			    <!-- form start -->
-			    <form role="form" method="POST" id="form-add" action="{{ url('report/invoice_report-excel') }}">
+			    <form target="_blank" role="form" method="POST" id="form-add" action="{{ url('report/invoice_report-excel') }}">
 					{!! csrf_field() !!}
 
 					<div class="box-body">

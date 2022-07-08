@@ -38,7 +38,9 @@
                 <th>Jumlah</th>
                 <th>Nama Barang</th>
                 <th>Penerima</th>
+                @if(isset($showinv))
                 <th>Invoice</th>
+                @endif
                 </tr>
             </thead>
             <tbody>
@@ -59,7 +61,9 @@
                             <td>{{ number_format($dtl->itemorder) }} {{ $dtl->itemunit }}</td>
                             <td>{{ $dtl->itemname }}</td>
                             <td>{{ $show ? $dtl->recname : '' }}</td>
+                            @if(isset($showinv))
                             <td>{{ $dtl->invoiceno }}</td>
+                            @endif
                         </tr>
                         <?php $tempName = $dtl->containername; $show = true; ?>
                     @endif
