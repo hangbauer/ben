@@ -486,7 +486,7 @@
 				</reportElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
-			<textField textAdjust="StretchHeight" pattern="dd/MM/yyyy">
+			<textField textAdjust="StretchHeight" pattern="dd MMM yyyy">
 				<reportElement style="Default" x="425" y="52" width="145" height="15" uuid="cc1b2c7a-80aa-4f54-97c6-2c225fefdcd1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -832,7 +832,7 @@
 					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
 				</reportElement>
 				<textElement markup="none"/>
-				<textFieldExpression><![CDATA["PPN " + IF($F{ppnpercent}.equals(0),"",IF($F{ppnpercent}.equals(1),"1%","10%"))]]></textFieldExpression>
+				<textFieldExpression><![CDATA["PPN " + IF($F{ppnpercent}.equals(0),"",IF($F{ppnpercent}.equals(1),"1.1%", $F{ppnpercent}.toString()+"%"))]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="110" y="136" width="180" height="15" uuid="b2c5e78f-1330-4129-99be-459ab7a0215e">

@@ -50,7 +50,7 @@ BEGIN
         AND (0 = intShipId OR shipsc.shipid = intShipId) 
         AND (0 = intRecipientId OR mas.recipientid = intRecipientId)
 		AND (0 = intPaymentTypeId OR mas.paymenttypeid = intPaymentTypeId)		
-	ORDER BY ship.name, shipsc.departdate, rec.name, mas.receiptno, mas.containername 
+	ORDER BY rec.name, mas.containername, shipsc.departdate, mas.receiptno, mas.containername 
     ;
 END$$
 DELIMITER ;
@@ -232,6 +232,11 @@ BEGIN
     WHERE 
 		(0 = intInvoiceMasId OR mas.id = intInvoiceMasId)      
         AND domas.containername = strContainerName
+        AND 
+        (
+			(dodtl.itemordersender IS NOT NULL AND mas.invoicetypeid = 0) OR
+            (dodtl.itemorderrecipient IS NOT NULL and mas.invoicetypeid = 1)
+		)
 	ORDER BY mas.id 
     ;
 END$$

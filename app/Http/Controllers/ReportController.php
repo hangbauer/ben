@@ -33,8 +33,8 @@ class ReportController extends Controller
             return $next($request);
         });
 
-        $this->jasperUrl = 'http://localhost:8082/jasperserver/rest_v2/reports/Report_BEN/';
-        $this->jasperUserPass = 'jasperadmin:jasperadmin';
+        $this->jasperUrl = env('JASPER_URL');
+        $this->jasperUserPass = env('JASPER_USER_PASS');
     }
 
     public function loadingList()
@@ -136,42 +136,42 @@ class ReportController extends Controller
         // Output a PDF file directly to the browser
         $mpdf->Output();
 
-        switch ($request->reporttypeid) {
-            case '1': //html
-                return view('report.deliveryorder-excel')
-                    ->with('data', $data)
-                    ;
-                break;
+        // switch ($request->reporttypeid) {
+        //     case '1': //html
+        //         return view('report.deliveryorder-excel')
+        //             ->with('data', $data)
+        //             ;
+        //         break;
 
-            case '2': //excel
-                Excel::create('New file', function($excel) use($data) {
+        //     case '2': //excel
+        //         Excel::create('New file', function($excel) use($data) {
 
-                    $excel->sheet('New sheet', function($sheet) use($data){
+        //             $excel->sheet('New sheet', function($sheet) use($data){
 
-                        $sheet->loadView('report.deliveryorder-excel')
-                            ->with('data', $data)
-                            ->with('excelflag', true)
-                            ;
+        //                 $sheet->loadView('report.deliveryorder-excel')
+        //                     ->with('data', $data)
+        //                     ->with('excelflag', true)
+        //                     ;
 
-                    });
+        //             });
 
-                })->export('xls');
+        //         })->export('xls');
 
-                break;
+        //         break;
 
-            case '3': //pdf
-                View::share ( 'data', $data );
-                $pdf = PDF::loadView('report.deliveryorder-excel');
-                // download pdf
-                // return $pdf->download('pdfview.pdf');
-                return $pdf->stream('pdfview.pdf');
+        //     case '3': //pdf
+        //         View::share ( 'data', $data );
+        //         $pdf = PDF::loadView('report.deliveryorder-excel');
+        //         // download pdf
+        //         // return $pdf->download('pdfview.pdf');
+        //         return $pdf->stream('pdfview.pdf');
 
-                break;
+        //         break;
 
-            default:
-                # code...
-                break;
-        }
+        //     default:
+        //         # code...
+        //         break;
+        // }
     }
 
     public function invoiceExcel(Request $request)
@@ -221,14 +221,15 @@ class ReportController extends Controller
         $invoice = Invoice::getInvoiceMasByID($request->invoicemasid);
         $terbilang = terbilang(round($invoice[0]->amount)) . " Rupiah";
 
-        $url = 'http://localhost:8082/jasperserver/rest_v2/reports/Report_BEN/Invoice.pdf?INVOICEMAS_ID='.$invoice[0]->id.'&TERBILANG='.urlencode($terbilang);
+        // $url = 'http://localhost:8082/jasperserver/rest_v2/reports/Report_BEN/Invoice.pdf?INVOICEMAS_ID='.$invoice[0]->id.'&TERBILANG='.urlencode($terbilang);
+        $url = $this->jasperUrl . 'Invoice.pdf?INVOICEMAS_ID='.$invoice[0]->id.'&TERBILANG='.urlencode($terbilang);
         // $headers = array('Content-Type: application/json', 'Accept: application/pdf', 'Connection: Keep-Alive');
         // var_dump($url);die;
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         // curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_USERPWD, "jasperadmin:jasperadmin");
+        curl_setopt($curl, CURLOPT_USERPWD, $this->jasperUserPass);
 
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HEADER, 1);

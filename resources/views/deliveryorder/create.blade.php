@@ -175,7 +175,11 @@
                     <input type="text" class="form-control volume" name="volume[]" value="{{ $dtl->volume }}" placeholder="Masukkan Volume" autocomplete="off">
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-danger btnDelete"><i class="fa fa-fw fa-close"></i></button>
+                    @if(isset($do['doMas']))
+                      @if(!isset($do['doMas'][0]->shipscheduleid))
+                        <button type="button" class="btn btn-block btn-danger btnDelete"><i class="fa fa-fw fa-close"></i></button>
+                      @endif
+                    @endif
                   </td>
                 </tr>
               @endforeach
@@ -195,7 +199,7 @@
                   <input type="text" class="form-control volume" name="volume[]" value="" placeholder="Masukkan Volume" autocomplete="off">
                 </td>
                 <td>
-                  <button type="button" class="btn btn-block btn-danger btnDelete"><i class="fa fa-fw fa-close"></i></button>
+                  <button type="button" class="btn btn-block btn-danger btnDelete"><i class="fa fa-fw fa-close"></i></button>                    
                 </td>
               </tr>
             @endif
@@ -203,7 +207,11 @@
           <tfoot>
             <tr>
               <td>
-                <button type="button" class="btn btn-block btn-success" id="btnAdd"><i class="fa fa-fw fa-plus"></i> Tambah Detail</button>
+                @if(isset($do['doMas']))
+                  @if(!isset($do['doMas'][0]->shipscheduleid))
+                    <button type="button" class="btn btn-block btn-success" id="btnAdd"><i class="fa fa-fw fa-plus"></i> Tambah Detail</button>
+                  @endif
+                @endif
               </td>
               <td>
 
@@ -226,8 +234,8 @@
       <div class="box-footer">
         
         @if(isset($do['doMas']))
-          @if(!isset($do['doMas'][0]->shipscheduleid))
-            <button type="submit" class="btn btn-primary">Ubah</button>
+          <button type="submit" class="btn btn-primary">Ubah</button>
+          @if(!isset($do['doMas'][0]->shipscheduleid))            
             <button type="button" class="btn btn-danger" id="btnDel">Hapus</button>
           @endif                    
         @else

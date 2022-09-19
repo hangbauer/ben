@@ -82,7 +82,11 @@
             </div>
           </div>
         </div>
-        <button type="button" class="btn btn-block btn-success" id="btnAdd"><i class="fa fa-fw fa-plus"></i> Tambah Detail</button>
+        @if(isset($invoiceDtl))
+          @if(count($invoiceDtl) == 0)
+            <button type="button" class="btn btn-block btn-success" id="btnAdd"><i class="fa fa-fw fa-plus"></i> Tambah Detail</button>
+          @endif            
+        @endif          
         <h4>Detail</h4>
         <table class="table" id="table-detail">
           <thead>
@@ -107,7 +111,13 @@
                   <td>{{ $dtl->dodate }}</td>
                   <td>{{ $dtl->sendername }}</td>
                   <td>{{ $dtl->recname }}</td>
-                  <td><button type="button" class="btn btn-block btn-danger btnDelete"><i class="fa fa-fw fa-close"></i></button></td>
+                  <td>
+                    @if(isset($invoiceDtl))
+                      @if(count($invoiceDtl) == 0)
+                        <button type="button" class="btn btn-block btn-danger btnDelete"><i class="fa fa-fw fa-close"></i></button>
+                      @endif            
+                    @endif          
+                  </td>
                 </tr>
               @endforeach
             @endif
@@ -118,9 +128,9 @@
 
       <div class="box-footer">        
         @if(isset($shipSchedule))
+          <button type="submit" class="btn btn-primary">Ubah</button>
           @if(isset($invoiceDtl))
-            @if(count($invoiceDtl) == 0)
-              <button type="submit" class="btn btn-primary">Ubah</button>
+            @if(count($invoiceDtl) == 0)              
               <button type="button" class="btn btn-danger" id="btnDel">Hapus</button>
             @endif            
           @endif          

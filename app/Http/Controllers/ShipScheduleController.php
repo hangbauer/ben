@@ -20,7 +20,7 @@ class ShipScheduleController extends Controller
      */
     public function __construct()
     {
-        View::share ( 'menuName', 'Master' );
+        View::share ( 'menuName', 'Transaksi' );
         View::share ( 'subMenuName', 'Jadwal Kapal' );
 
         $this->middleware('auth');

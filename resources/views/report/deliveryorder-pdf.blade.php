@@ -45,7 +45,7 @@
                         </tr>
                         <tr>
                         <td>ALAMAT : {{$dtl->recaddress}}</td>
-                        <td>TANGGAL : {{date('d-m-Y', strtotime($dtl->departdate))}}</td>
+                        <td>TANGGAL : {{date('d M Y', strtotime($dtl->departdate))}}</td>
                         </tr>
                     </table>
 
@@ -67,7 +67,7 @@
                             <?php $itemCount++; ?>
                             <tr style="line-height: 15px; height: 15px;">
                             <td width="20%">{{ $dtl2->receiptno }}</td>
-                            <td width="10%">{{ $dtl2->dodate }}</td>
+                            <td width="10%">{{ date('d M Y', strtotime($dtl2->dodate)) }}</td>
                             <td width="10%">{{ number_format($dtl2->itemorder,0) . ' ' . $dtl2->itemunit }}</td>
                             <td>{{ $dtl2->itemname }}</td>
                             <td>{{ $tempReceiptNo == $dtl2->receiptno ? '' : $dtl2->note }}</td>

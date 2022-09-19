@@ -83,7 +83,7 @@
                     @if($dtl->shipscid . $dtl->recipientid . $dtl->containername == $dtl2->shipscid . $dtl2->recipientid . $dtl2->containername)
                     <tr style="line-height: 15px; height: 15px;">
                     <td>{{ $dtl2->receiptno }}</td>
-                    <td>{{ $dtl2->dodate }}</td>
+                    <td>{{ date('d-m-Y', strtotime($dtl2->dodate)) }}</td>
                     <td>{{ $dtl2->itemorder . ' ' . $dtl2->itemunit }}</td>
                     <td>{{ $dtl2->itemname }}</td>
                     <td>{{ $tempReceiptNo == $dtl2->receiptno ? '' : $dtl2->note }}</td>

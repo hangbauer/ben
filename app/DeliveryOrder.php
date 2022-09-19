@@ -385,7 +385,7 @@ class DeliveryOrder {
             ->delete();
     }
 
-    public static function updateSplit($request){		
+    public static function updateSplit($request){	        	
         for($i = 0; $i < count($request['subdtl-id']); $i++){
 			if($request['subdtl-invoicetypeid'][$i] == '0'){
 				if($request['subdtl-id'][$i] != '0'){

@@ -644,19 +644,33 @@
       var invtype = $('select[name=invoicetypeid]').val();
 
       var html = '';
+      
       for(var i = 0; i < data.length; i++){
         // console.log(data[i].id);
+        var itemOrderSender = '';
+        var itemOrderRecipient = '';
+        var note = '';
+
+        if(data[i].note !== null){
+          note = data[i].note;
+        }
         
         html += '<tr data-id="' + data[i].id + '">';
         html += '<td><input type="hidden" class="subdtlid" name="subdtl-id[]" value="' + data[i].id + '"><input type="hidden" class="invoicetypeid" name="subdtl-invoicetypeid[]" value="' + invtype + '"><input type="hidden" class="subdtl-domasid" name="subdtl-domasid[]" value="' + data[i].domasid + '"></td>';
         html += '<td>' + data[i].itemname + '</td>';
         html += '<td>' + data[i].itemorder + '</td>';
         if(invtype == '0'){
-          html += '<td><input type="text" class="itemordersender" name="subdtl-itemordersender[]" value="' + data[i].itemordersender + '"></td>';
+          if(data[i].itemordersender !== null){
+            itemOrderSender = data[i].itemordersender
+          }
+          html += '<td><input type="text" class="itemordersender" name="subdtl-itemordersender[]" value="' + itemOrderSender + '"></td>';
         }else{
-          html += '<td><input type="text" class="itemorderrecipient" name="subdtl-itemorderrecipient[]" value="' + data[i].itemorderrecipient + '"></td>';
+          if(data[i].itemorderrecipient !== null){
+            itemOrderRecipient = data[i].itemorderrecipient
+          }
+          html += '<td><input type="text" class="itemorderrecipient" name="subdtl-itemorderrecipient[]" value="' + itemOrderRecipient + '"></td>';
         }        
-        html += '<td><input type="text" class="note" name="subdtl-note[]" value="' + data[i].note + '"></td>';
+        html += '<td><input type="text" class="note" name="subdtl-note[]" value="' + note + '"></td>';
         html += '</tr>';
         
       }
