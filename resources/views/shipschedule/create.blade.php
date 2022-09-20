@@ -85,7 +85,9 @@
         @if(isset($invoiceDtl))
           @if(count($invoiceDtl) == 0)
             <button type="button" class="btn btn-block btn-success" id="btnAdd"><i class="fa fa-fw fa-plus"></i> Tambah Detail</button>
-          @endif            
+          @endif 
+        @else
+        <button type="button" class="btn btn-block btn-success" id="btnAdd"><i class="fa fa-fw fa-plus"></i> Tambah Detail</button>                     
         @endif          
         <h4>Detail</h4>
         <table class="table" id="table-detail">
@@ -115,7 +117,9 @@
                     @if(isset($invoiceDtl))
                       @if(count($invoiceDtl) == 0)
                         <button type="button" class="btn btn-block btn-danger btnDelete"><i class="fa fa-fw fa-close"></i></button>
-                      @endif            
+                      @endif         
+                    @else
+                    <button type="button" class="btn btn-block btn-danger btnDelete"><i class="fa fa-fw fa-close"></i></button>
                     @endif          
                   </td>
                 </tr>

@@ -179,6 +179,8 @@
                       @if(!isset($do['doMas'][0]->shipscheduleid))
                         <button type="button" class="btn btn-block btn-danger btnDelete"><i class="fa fa-fw fa-close"></i></button>
                       @endif
+                    @else
+                      <button type="button" class="btn btn-block btn-danger btnDelete"><i class="fa fa-fw fa-close"></i></button>
                     @endif
                   </td>
                 </tr>
@@ -211,6 +213,8 @@
                   @if(!isset($do['doMas'][0]->shipscheduleid))
                     <button type="button" class="btn btn-block btn-success" id="btnAdd"><i class="fa fa-fw fa-plus"></i> Tambah Detail</button>
                   @endif
+                @else
+                <button type="button" class="btn btn-block btn-success" id="btnAdd"><i class="fa fa-fw fa-plus"></i> Tambah Detail</button>
                 @endif
               </td>
               <td>
