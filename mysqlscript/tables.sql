@@ -194,6 +194,8 @@ CREATE TABLE `invoicemas` (
   `insurance` decimal(20,2) DEFAULT '0.00',
   `quarantine` decimal(20,2) DEFAULT '0.00',
   `shipid` int(11) DEFAULT NULL,
+  `invoicename` varchar(100) DEFAULT NULL,
+  `invoiceaddr` varchar(500) DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) NOT NULL,
   `branchid` int(11) NOT NULL,

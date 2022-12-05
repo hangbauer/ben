@@ -232,10 +232,12 @@ class DeliveryOrder {
     }
 
     public static function searchList($request){
-        $sql = "SELECT mas.*, sender.name AS sendername, recipient.name AS recname
+        $sql = "SELECT mas.*, sender.name AS sendername, recipient.name AS recname, invmas.invoiceno
             FROM domas mas
             LEFT JOIN sender ON sender.id = mas.senderid
             LEFT JOIN recipient ON recipient.id = mas.recipientid
+            LEFT JOIN invoicedtl invdtl ON invdtl.domasid = mas.id
+            LEFT JOIN invoicemas invmas ON invmas.id = invdtl.invoicemasid
             WHERE IFNULL(shipscheduleid,'') = ''
             ORDER BY mas.containername
             "

@@ -120,6 +120,18 @@
 		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="invoicename" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="invoicename"/>
+		<property name="com.jaspersoft.studio.field.label" value="invoicename"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="invoiceaddr" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="invoiceaddr"/>
+		<property name="com.jaspersoft.studio.field.label" value="invoiceaddr"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoicemas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="dtlid" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
 		<property name="com.jaspersoft.studio.field.label" value="dtlid"/>
@@ -350,13 +362,6 @@
 	<pageHeader>
 		<band height="156" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="0" y="0" width="570" height="20" uuid="e184e214-aa1e-4fc9-968c-6d3d6344fe08">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[PT. BINA ERA NUSANTARA]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="0" y="20" width="570" height="15" uuid="38ec3841-925c-4d53-993d-992ee26b70f3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -383,7 +388,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement markup="none"/>
-				<textFieldExpression><![CDATA[IF($F{invoicetypeid}==0,$F{sendername},$F{recname})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[IF($F{invoicename} == null, IF($F{invoicetypeid}==0,$F{sendername},$F{recname}), $F{invoicename})]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="40" y="68" width="10" height="15" uuid="7d37b0e0-20a3-4a74-9a0e-df1f61dc8fe0">
@@ -403,11 +408,12 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement markup="none"/>
-				<textFieldExpression><![CDATA[IF($F{invoicetypeid}==0,$F{senderaddress},$F{recaddress})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[IF($F{invoiceaddr}==null,IF($F{invoicetypeid}==0,$F{senderaddress},$F{recaddress}),$F{invoiceaddr})]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Title" x="0" y="104" width="570" height="20" uuid="059de41a-da36-4142-9b44-bab47c1f8828">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[$F{ppnamount}.compareTo(BigDecimal.ZERO)!=0]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[INVOICE]]></text>
@@ -506,6 +512,13 @@
 				</reportElement>
 				<textElement markup="none"/>
 				<textFieldExpression><![CDATA[$F{destination}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Title" x="0" y="0" width="570" height="20" uuid="bd9b5116-c846-4aa1-a5c6-95b48cc6eabd">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[IF($F{ppnamount}.compareTo(BigDecimal.ZERO)==0,"INVOICE","PT. BINA ERA NUSANTARA")]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

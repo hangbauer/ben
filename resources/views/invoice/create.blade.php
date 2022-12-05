@@ -133,12 +133,26 @@
               </select>
             </div>
           </div>
-          <div class="col-md-8">
+          <div class="col-md-4">
             <div class="form-group">
               <label for="note">Keterangan</label>
               <input type="text" class="form-control" name="note" value="{{ isset($invoice['invoiceMas']) ? $invoice['invoiceMas'][0]->note : ''}}" placeholder="Masukkan Keterangan" autocomplete="off">
             </div>
           </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="invoicename">Nama Invoice</label>
+              <input type="text" class="form-control" name="invoicename" value="{{ isset($invoice['invoiceMas']) ? $invoice['invoiceMas'][0]->invoicename : ''}}" placeholder="Masukkan Nama Invoice" autocomplete="off">
+            </div>
+          </div>          
+        </div>
+        <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+              <label for="invoicename">Alamat Invoice</label>
+              <input type="text" class="form-control" name="invoiceaddr" value="{{ isset($invoice['invoiceMas']) ? $invoice['invoiceMas'][0]->invoiceaddr : ''}}" placeholder="Masukkan Alamat Invoice" autocomplete="off">
+            </div>
+          </div>          
         </div>
         <button type="button" class="btn btn-block btn-success" id="btnAdd"><i class="fa fa-fw fa-plus"></i> Tambah Detail</button>
         <h4>Detail</h4>
@@ -237,7 +251,7 @@
   @endif
 
   <div class="modal fade" id="modal-default">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -257,6 +271,7 @@
                 <th>Tanda Terima</th>
                 <th>Nomor Seal</th>
                 <th>Nama Penerima</th>
+                <th>Invoice</th>
                 <th></th>
               </tr>
             </thead>
@@ -513,6 +528,7 @@
           html += '<td>' + data[i].receiptno + '</td>';
           html += '<td>' + data[i].seal + '</td>';
           html += '<td>' + data[i].recname + '</td>';
+          html += '<td>' + data[i].invoiceno + '</td>';
           html += '</tr>';
         }
       }

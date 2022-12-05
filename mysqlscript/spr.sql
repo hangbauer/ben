@@ -63,7 +63,7 @@ BEGIN
 	SELECT
 		mas.id, mas.invoiceno, mas.senderid, mas.recipientid, mas.invoicedate, mas.duedate, 
         mas.ppnpercent, mas.bankid, mas.invoicetypeid, mas.note, mas.status, mas.amount, mas.paidamount, mas.ppnamount, mas.insurance,
-        mas.quarantine,
+        mas.quarantine, mas.invoicename, mas.invoiceaddr, 
         dtl.id AS dtlid, dtl.domasid, dtl.amount AS dtlamount, dtl.note AS dtlnote,        
         domas.receiptno, domas.dodate, domas.containername, domas.seal, domas.note AS domasnote, con.name as conname,
         dodtl.itemname, dodtl.itemorder, dodtl.itemunit, dodtl.volume, dodtl.note AS dodtlnote,
@@ -160,7 +160,7 @@ BEGIN
     LEFT OUTER JOIN shipschedule shipsc ON mas.shipscheduleid = shipsc.id 
     LEFT OUTER JOIN ship ON shipsc.shipid = ship.id     
     WHERE 
-		(shipsc.departdate BETWEEN dateFrom AND dateTo) 
+		((shipsc.departdate BETWEEN dateFrom AND dateTo) OR 0 = intIsShip)
         AND (0 = intShipId OR shipsc.shipid = intShipId) 
         AND ((0 = intIsShip AND shipsc.id IS NULL) OR (1 = intIsShip AND shipsc.id IS NOT NULL )) 
         AND (0 = intRecId OR mas.recipientid = intRecId) 
