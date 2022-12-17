@@ -264,12 +264,13 @@ class DeliveryOrder {
             //     "
             //     ;
             
-            $sql = "SELECT mas.*,con.name AS conname,rec.name AS recname
+            $sql = "SELECT mas.*,con.name AS conname,rec.name AS recname,invmas.invoiceno
                 FROM domas mas 
                 JOIN containertype con ON mas.containertypeid = con.id 
                 JOIN recipient rec ON mas.recipientid = rec.id
                 JOIN shipschedule sch ON sch.id = mas.shipscheduleid
                 LEFT JOIN invoicedtl dtl ON dtl.domasid = mas.id
+                LEFT JOIN invoicemas invmas ON dtl.invoicemasid = invmas.id
                 WHERE IFNULL(mas.shipscheduleid,'') <> ''                
                 AND mas.senderid = ?
                 AND sch.shipid = ?
@@ -293,12 +294,13 @@ class DeliveryOrder {
             //     "
             //     ;
 
-            $sql = "SELECT mas.*,con.name AS conname,rec.name AS recname
+            $sql = "SELECT mas.*,con.name AS conname,rec.name AS recname,invmas.invoiceno
                 FROM domas mas 
                 JOIN containertype con ON mas.containertypeid = con.id 
                 JOIN recipient rec ON mas.recipientid = rec.id
                 JOIN shipschedule sch ON sch.id = mas.shipscheduleid
                 LEFT JOIN invoicedtl dtl ON dtl.domasid = mas.id
+                LEFT JOIN invoicemas invmas ON dtl.invoicemasid = invmas.id
                 WHERE IFNULL(mas.shipscheduleid,'') <> ''                
                 AND mas.recipientid = ?
                 AND sch.shipid = ?

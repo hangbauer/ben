@@ -128,7 +128,7 @@
               <select class="form-control select2" style="width: 100%;" name="bankid">
                 <option value=""></option>
                 @foreach($dropDownBank as $bank)
-                  <option value="{{ $bank->id }}" {{ $bank->id == (isset($invoice['invoiceMas']) ? $invoice['invoiceMas'][0]->bankid : '') ? 'selected' : '' }}>{{ $bank->name }}</option>
+                  <option value="{{ $bank->id }}" data-ppn="{{ $bank->ppn }}" {{ $bank->id == (isset($invoice['invoiceMas']) ? $invoice['invoiceMas'][0]->bankid : '') ? 'selected' : '' }}>{{ $bank->name }}</option>
                 @endforeach
               </select>
             </div>
@@ -411,6 +411,13 @@
         setLock();
       });
 
+      $('select[name=bankid]').on('change', function(){
+        console.log('aaa');
+        setLockPPN();
+        calculate();
+        
+      });
+
       $('select[name=invoicetypeid]').on('change', function(){
         switch($(this).val()){
           case '0': //sender
@@ -594,6 +601,16 @@
         $('select[name=senderid]').prop('disabled', false);
         $('select[name=recipientid]').prop('disabled', false);
       }
+    }
+
+    function setLockPPN(){
+      if($('select[name=bankid]').find(':selected').data('ppn') == '0'){
+        $('input[name=ppnpercent').val(0);
+        $('input[name=ppn').val(0);
+        $('input[name=ppnpercent').attr('readonly', true);
+      }else{        
+        $('input[name=ppnpercent').attr('readonly', false);
+      }      
     }
 
     function getInvoiceNo(){

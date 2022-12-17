@@ -24,6 +24,7 @@ class Bank {
                 'accountno'     => $request->accountno,
                 'note'          => $request->note,
                 'status'        => $request->status,
+                'ppn'           => $request->ppn,
                 'created_at'    => Date('Y-m-d h:i:s'),
                 'updated_at'    => Date('Y-m-d h:i:s'),
                 'created_by'    => $userid,
@@ -37,6 +38,7 @@ class Bank {
                 'accountno'     => $request->accountno,
                 'note'          => $request->note,
                 'status'        => $request->status,
+                'ppn'           => $request->ppn,
                 'updated_at'    => Date('Y-m-d h:i:s'),
                 'updated_by'    => $userid,
             );

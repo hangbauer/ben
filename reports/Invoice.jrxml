@@ -698,7 +698,7 @@
 					<printWhenExpression><![CDATA[$V{CURRENT_PAGE}.equals($V{PAGE_NUMBER})]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" markup="none"/>
-				<textFieldExpression><![CDATA[$F{amount}.subtract($F{ppnamount}).subtract($F{insurance})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{amount}.subtract($F{ppnamount}).subtract($F{insurance}).subtract($F{quarantine})]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="#,###,##0">
 				<reportElement style="Default" x="454" y="17" width="108" height="15" uuid="9397dcb4-12b1-466b-9000-a54025d3c928">

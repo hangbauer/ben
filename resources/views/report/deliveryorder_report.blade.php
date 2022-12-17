@@ -110,7 +110,8 @@
 									<option value="3">Pdf</option>
 									</select>
 								</div>
-                            </div>                            
+                            </div> 
+							                         
 						</div>
 					</div>
 					<!-- /.box-body -->

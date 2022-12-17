@@ -32,7 +32,7 @@ DELIMITER ;
 
 DROP procedure IF EXISTS `sprRptDeliveryOrder`;
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sprRptDeliveryOrder`(IN departDate VARCHAR(10), IN intShipId INT, IN intRecipientId INT, IN intPaymentTypeId INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sprRptDeliveryOrder`(IN departDate VARCHAR(10), IN intShipId INT, IN intRecipientId INT, IN intPaymentTypeId INT, IN strContainerName VARCHAR(50))
 BEGIN
 	SELECT
 		mas.receiptno, mas.dodate, mas.containername, mas.seal, mas.note, mas.recipientid,
@@ -49,7 +49,8 @@ BEGIN
 		('' = departDate OR shipsc.departdate = departDate) 
         AND (0 = intShipId OR shipsc.shipid = intShipId) 
         AND (0 = intRecipientId OR mas.recipientid = intRecipientId)
-		AND (0 = intPaymentTypeId OR mas.paymenttypeid = intPaymentTypeId)		
+		AND (0 = intPaymentTypeId OR mas.paymenttypeid = intPaymentTypeId)
+		AND ('' = strContainerName OR mas.containername = strContainerName)
 	ORDER BY rec.name, mas.containername, shipsc.departdate, mas.receiptno, mas.containername 
     ;
 END$$

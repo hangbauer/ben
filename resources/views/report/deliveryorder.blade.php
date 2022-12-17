@@ -79,6 +79,12 @@
 					        </div>
 							<div class="col-md-4">
 								<div class="form-group">
+									<label>Nomor Container</label>
+									<input class="form-control" name="containername">
+								</div>
+							</div>  
+							<div class="col-md-4">
+								<div class="form-group">
 									<label>Tipe Laporan</label>
 									<select class="form-control select2" style="width: 100%;" name="reporttypeid">
 									<option value="1">Html</option>

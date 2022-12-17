@@ -30,6 +30,7 @@ CREATE TABLE `bank` (
   `accountno` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `note` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,  
   `status` tinyint(1) DEFAULT '0',
+  `ppn` tinyint(1) DEFAULT '0',
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) NOT NULL,
   `branchid` int(11) NOT NULL,

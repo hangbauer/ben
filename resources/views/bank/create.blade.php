@@ -47,6 +47,13 @@
                 <option value="1" {{ 1 == (isset($bank) ? $bank[0]->status : 0) ? 'selected' : '' }}>Tidak Aktif</option>
               </select>
             </div>
+            <div class="form-group">
+              <label for="status">PPN</label>
+              <select class="form-control" name="ppn">
+                <option value="1" {{ 1 == (isset($bank) ? $bank[0]->ppn : 0) ? 'selected' : '' }}>PPN</option>
+                <option value="0" {{ 0 == (isset($bank) ? $bank[0]->ppn : 0) ? 'selected' : '' }}>Non PPN</option>
+              </select>
+            </div>
           </div>
           <!-- /.box-body -->
 
